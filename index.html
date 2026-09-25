@@ -1,617 +1,896 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anubis Apps | متجر تطبيقات المطور خالد محي الدين</title>
-    <!-- Tailwind CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Anubis Store | متجر تطبيقات المطور خالد محي الدين</title>
+    <meta name="description" content="المتجر العالمي الرسمي لتطبيقات الأندروID الخفيفة والآمنة للمطور خالد محي الدين. تحميل مباشر APK مفحوص بأعلى معايير الأمان.">
+    <meta name="theme-color" content="#1e1b4b">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Arabic Fonts -->
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Arabic & Global Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=El+Messiri:wght@600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=El+Messiri:wght@700;800&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        pharaoh: {
-                            gold: '#c99738',
-                            goldLight: '#e4b658',
-                            goldDark: '#936a18',
-                            goldSoft: '#f8eed9',
-                            obsidian: '#120d09',
-                            darkBrown: '#23160e',
-                            sandBg: '#faf7f2',
-                            sandBorder: '#e8dcbe',
-                            sandCard: '#ffffff'
+                        gold: {
+                            100: '#FEF3C7',
+                            200: '#FDE68A',
+                            300: '#FCD34D',
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309'
+                        },
+                        brand: {
+                            dark: '#0c0f1d',
+                            surface: '#151a30',
+                            card: '#1c2340',
+                            cardBorder: '#323c65',
+                            accent: '#38bdf8'
                         }
                     },
                     fontFamily: {
                         cairo: ['Cairo', 'sans-serif'],
                         messiri: ['El Messiri', 'serif'],
-                        kufi: ['Reem Kufi', 'sans-serif']
+                        outfit: ['Outfit', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'neon-gold': '0 0 30px -5px rgba(245, 158, 11, 0.4)',
+                        'neon-blue': '0 0 30px -5px rgba(56, 189, 248, 0.35)',
+                        'card-glow': '0 12px 35px -8px rgba(0, 0, 0, 0.5), 0 0 20px -3px rgba(245, 158, 11, 0.15)'
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f7f3ea;
-            background-image: radial-gradient(#dfcfb0 0.8px, transparent 0.8px), radial-gradient(#dfcfb0 0.8px, #f7f3ea 0.8px);
-            background-size: 32px 32px;
-            background-position: 0 0, 16px 16px;
-            color: #1f130b;
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #a67319 0%, #d4a037 50%, #875c12 100%);
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0b0e1a;
+            /* Luminous, vibrant modern gradient background - No dull darkness */
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.18) 0%, transparent 35%),
+                radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.14) 0%, transparent 55%),
+                radial-gradient(circle at 80% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, #0d1122 0%, #0a0d18 100%);
+            background-attachment: fixed;
+            color: #FFFFFF;
+        }
+
+        /* Gradient Text Styles */
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FDE68A 30%, #F59E0B 75%, #D97706 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .gold-gradient-bg {
-            background: linear-gradient(135deg, #c99738 0%, #b88325 50%, #9a6b18 100%);
+        .text-gradient-cyan {
+            background: linear-gradient(135deg, #E0F2FE 0%, #38BDF8 60%, #0284C7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .gold-gradient-bg:hover {
-            background: linear-gradient(135deg, #d8a644 0%, #c99738 50%, #aa771c 100%);
-        }
-
-        .royal-card {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(201, 151, 56, 0.25);
-            box-shadow: 0 8px 24px -6px rgba(50, 30, 12, 0.07);
+        /* Vibrant Multi-Color Buttons */
+        .btn-gold-gradient {
+            background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 45%, #D97706 100%);
+            box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.45);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .royal-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(201, 151, 56, 0.6);
-            box-shadow: 0 16px 32px -8px rgba(184, 131, 37, 0.18);
+        .btn-gold-gradient:hover {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FBBF24 50%, #B45309 100%);
+            box-shadow: 0 8px 30px 0 rgba(245, 158, 11, 0.65);
+            transform: translateY(-2px);
         }
 
-        .pharaoh-badge {
-            background: linear-gradient(90deg, #1f130b, #332014);
-            color: #e5b95f;
-            border: 1px solid #755018;
+        /* Professional Glass Cards with Vibrant Gradients */
+        .store-card {
+            background: linear-gradient(165deg, rgba(28, 35, 64, 0.92) 0%, rgba(18, 23, 43, 0.96) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .gold-glow {
-            box-shadow: 0 0 25px rgba(201, 151, 56, 0.35);
+        .store-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(251, 191, 36, 0.85);
+            box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(245, 158, 11, 0.35);
         }
 
-        /* Toast animation */
-        #toast {
-            transition: transform 0.3s ease, opacity 0.3s ease;
+        /* Uniform App Icon Container */
+        .app-icon-box {
+            width: 110px;
+            height: 110px;
+            min-width: 110px;
+            min-height: 110px;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #242c52 0%, #151a33 100%);
+            border: 2px solid rgba(251, 191, 36, 0.5);
+            box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        /* Scrollbar styling */
+        .app-icon-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .store-card:hover .app-icon-box img {
+            transform: scale(1.08);
+        }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1e9d8;
+            background: #0c0f1d;
         }
         ::-webkit-scrollbar-thumb {
-            background: #c99738;
-            border-radius: 4px;
+            background: linear-gradient(180deg, #F59E0B, #38BDF8);
+            border-radius: 9999px;
+        }
+
+        /* Pulse ring */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.92); opacity: 0.9; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(0.92); opacity: 0.9; }
+        }
+        .pulse-indicator {
+            animation: pulse-ring 2.2s infinite ease-in-out;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col selection:bg-[#c99738] selection:text-white">
+<body class="min-h-screen flex flex-col selection:bg-gold-500 selection:text-slate-950 text-white">
 
-    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-pharaoh-darkBrown text-[#f6e5be] border border-pharaoh-gold px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
-            <i class="fas fa-check-circle text-pharaoh-goldLight text-lg"></i>
-            <span id="toastMessage" class="text-sm font-bold">تم نسخ الرابط بنجاح!</span>
+    <!-- FLOATING TOAST NOTIFICATION -->
+    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] transform -translate-y-28 opacity-0 pointer-events-none transition-all duration-300 ease-out">
+        <div class="bg-gradient-to-r from-brand-surface to-brand-card text-white border-2 border-gold-400 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg shrink-0">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div>
+                <p id="toastTitle" class="text-xs font-black text-gold-300">إشعار النظام</p>
+                <p id="toastMessage" class="text-sm font-bold text-white mt-0.5">تمت العملية بنجاح</p>
+            </div>
         </div>
     </div>
 
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-pharaoh-sandBorder shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex items-center justify-between gap-4">
-            
-            <!-- Logo & Brand Identity -->
-            <a href="#" class="flex items-center gap-3.5 group">
-                <div class="relative w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-pharaoh-darkBrown to-pharaoh-obsidian flex items-center justify-center border border-pharaoh-gold/40 shadow-inner group-hover:scale-105 transition-transform duration-300">
-                    <!-- Stylized Eye of Horus / Egyptian Anubis Symbol -->
-                    <svg class="w-7 h-7 text-pharaoh-goldLight" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 50 C 32 24, 68 24, 88 50 C 68 76, 32 76, 12 50 Z" stroke="#e4b658" stroke-width="6" fill="none" stroke-linejoin="round"/>
-                        <circle cx="50" cy="50" r="14" fill="#c99738"/>
-                        <circle cx="50" cy="50" r="6" fill="#120d09"/>
-                        <path d="M50 64 L 50 88 L 38 80" stroke="#e4b658" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M88 50 C 76 42, 66 36, 56 32" stroke="#e4b658" stroke-width="5" stroke-linecap="round"/>
-                    </svg>
-                    <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white" title="المتجر نشط"></span>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <h1 class="text-xl sm:text-2xl font-black font-messiri text-pharaoh-darkBrown tracking-wide">Anubis Apps</h1>
-                        <span class="pharaoh-badge text-[10px] px-2 py-0.5 rounded-full font-bold">رسمي</span>
+    <!-- ======================================================== -->
+    <!-- WORLD-CLASS APP STORE NAVBAR -->
+    <!-- ======================================================== -->
+    <header class="sticky top-0 z-40 bg-brand-dark/90 backdrop-blur-xl border-b border-brand-cardBorder shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                
+                <!-- BRAND LOGO & OFFICIAL BADGE -->
+                <a href="#" class="flex items-center gap-3.5 group shrink-0">
+                    <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-gold-400 via-amber-500 to-indigo-600 p-[2px] shadow-neon-gold group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full rounded-[14px] bg-brand-surface flex items-center justify-center overflow-hidden">
+                            <!-- Royal Horus / Anubis Symbol -->
+                            <svg class="w-8 h-8 text-gold-300 group-hover:rotate-6 transition-transform duration-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 50 C 32 24, 68 24, 88 50 C 68 76, 32 76, 12 50 Z" stroke="#FDE68A" stroke-width="5.5" fill="none" stroke-linejoin="round"/>
+                                <circle cx="50" cy="50" r="14" fill="#F59E0B"/>
+                                <circle cx="50" cy="50" r="6" fill="#0B0E1A"/>
+                                <path d="M50 64 L 50 88 L 38 80" stroke="#FDE68A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M88 50 C 76 42, 66 36, 56 32" stroke="#FDE68A" stroke-width="5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
                     </div>
-                    <p class="text-xs font-semibold text-pharaoh-darkBrown/75">تطبيقات المطور خالد محي الدين</p>
-                </div>
-            </a>
-
-            <!-- Search Bar (Live Dynamic Filter) -->
-            <div class="flex-1 max-w-md hidden sm:block">
-                <div class="relative">
-                    <i class="fas fa-search absolute right-3.5 top-1/2 -translate-y-1/2 text-pharaoh-goldDark text-sm pointer-events-none"></i>
-                    <input type="text" id="searchInput" placeholder="ابحث باسم التطبيق أو الوظيفة..." 
-                           class="w-full bg-[#fbf9f4] border border-pharaoh-sandBorder focus:border-pharaoh-gold text-pharaoh-darkBrown text-sm font-semibold rounded-xl pr-10 pl-9 py-2.5 outline-none transition shadow-sm focus:ring-2 focus:ring-pharaoh-gold/20"
-                           oninput="filterApps()">
-                    <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 text-xs">
-                        <i class="fas fa-times-circle"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Quick Action: Verified Developer Badge -->
-            <div class="flex items-center gap-2">
-                <a href="#installGuide" class="hidden md:flex items-center gap-1.5 text-xs font-bold text-pharaoh-darkBrown hover:text-pharaoh-gold px-3 py-2 rounded-lg border border-pharaoh-sandBorder bg-white transition">
-                    <i class="fas fa-shield-check text-pharaoh-gold"></i>
-                    <span>طريقة التثبيت الآمن</span>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl sm:text-3xl font-black font-messiri text-gradient-gold tracking-wide">Anubis Store</span>
+                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+                                <i class="fas fa-check-circle text-[9px]"></i> رسمي 100%
+                            </span>
+                        </div>
+                        <p class="text-xs font-bold text-slate-300 mt-0.5">متجر تطبيقات المطور خالد محي الدين</p>
+                    </div>
                 </a>
-                <div class="flex items-center gap-2 bg-gradient-to-r from-[#f7ecd5] to-[#f4e0ba] border border-pharaoh-gold/50 px-3 py-1.5 rounded-xl shadow-xs">
-                    <div class="w-7 h-7 rounded-lg bg-pharaoh-darkBrown text-pharaoh-goldLight flex items-center justify-center font-extrabold text-xs shadow-inner">
-                        خ
+
+                <!-- INSTANT SEARCH BAR (DESKTOP) -->
+                <div class="flex-1 max-w-lg hidden md:block">
+                    <div class="relative group">
+                        <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gold-400 text-sm group-focus-within:text-white transition-colors pointer-events-none"></i>
+                        <input type="text" id="searchInput" placeholder="ابحث باسم التطبيق أو الوظيفة (مثال: فيكتور، راديو، أمان)..." 
+                               class="w-full bg-brand-surface/90 border-2 border-brand-cardBorder focus:border-gold-400 text-white placeholder:text-slate-400 text-sm font-bold rounded-2xl pr-11 pl-20 py-3 outline-none transition-all shadow-inner focus:ring-4 focus:ring-gold-500/20"
+                               oninput="filterApps()">
+                        <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5 pointer-events-none">
+                            <kbd class="px-2 py-0.5 text-[10px] font-bold font-outfit rounded-lg bg-brand-card text-gold-300 border border-brand-cardBorder">Ctrl+K</kbd>
+                            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden pointer-events-auto text-slate-400 hover:text-white text-xs">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </div>
                     </div>
-                    <span class="text-xs font-black text-pharaoh-darkBrown hidden lg:inline">خالد محي الدين</span>
                 </div>
+
+                <!-- RIGHT CONTROLS: INSTALL GUIDE + DEV PROFILE CHIP -->
+                <div class="flex items-center gap-3">
+                    <a href="#installGuide" class="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-xs font-bold text-white transition-all hover:scale-105 shadow-sm">
+                        <i class="fas fa-shield-alt text-emerald-400"></i>
+                        <span>دليل التثبيت الآمن</span>
+                    </a>
+
+                    <a href="#developerCard" class="flex items-center gap-2.5 px-3 py-2 rounded-2xl bg-gradient-to-r from-gold-500/20 to-amber-500/20 border-2 border-gold-400/50 hover:border-gold-400 transition-all">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-gold-400 to-amber-600 text-slate-950 flex items-center justify-center font-black font-messiri text-base shadow-sm">
+                            خ
+                        </div>
+                        <div class="hidden lg:block text-right">
+                            <span class="block text-xs font-black text-white leading-tight">خالد محي الدين</span>
+                            <span class="block text-[10px] font-bold text-gold-300">مطور معتمد</span>
+                        </div>
+                    </a>
+                </div>
+
             </div>
 
-        </div>
-
-        <!-- Mobile Search Input Bar -->
-        <div class="sm:hidden px-4 pb-3">
-            <div class="relative">
-                <i class="fas fa-search absolute right-3.5 top-1/2 -translate-y-1/2 text-pharaoh-goldDark text-sm pointer-events-none"></i>
-                <input type="text" id="mobileSearchInput" placeholder="ابحث عن التطبيقات..." 
-                       class="w-full bg-[#fbf9f4] border border-pharaoh-sandBorder focus:border-pharaoh-gold text-pharaoh-darkBrown text-sm font-semibold rounded-xl pr-10 pl-4 py-2 outline-none transition"
-                       oninput="syncMobileSearch(this.value)">
+            <!-- MOBILE SEARCH BAR -->
+            <div class="md:hidden pb-3.5 pt-1">
+                <div class="relative">
+                    <i class="fas fa-search absolute right-3.5 top-1/2 -translate-y-1/2 text-gold-400 text-xs pointer-events-none"></i>
+                    <input type="text" id="mobileSearchInput" placeholder="ابحث عن التطبيقات..." 
+                           class="w-full bg-brand-surface border border-brand-cardBorder focus:border-gold-400 text-white placeholder:text-slate-400 text-xs font-bold rounded-xl pr-9 pl-4 py-2.5 outline-none transition"
+                           oninput="syncMobileSearch(this.value)">
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="relative overflow-hidden bg-gradient-to-b from-[#f3ead7] to-[#f7f3ea] border-b border-pharaoh-sandBorder py-8 sm:py-12">
-        <!-- Subtle Hieroglyphic / Geometric Decorative Elements -->
-        <div class="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-pharaoh-gold/10 blur-2xl pointer-events-none"></div>
-        <div class="absolute -bottom-10 -right-10 w-56 h-56 rounded-full bg-pharaoh-goldLight/15 blur-3xl pointer-events-none"></div>
-        
-        <div class="max-w-6xl mx-auto px-4 relative">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+    <!-- ======================================================== -->
+    <!-- HERO SPOTLIGHT: DYNAMIC SHOWCASE BANNER (ROTATES ON REFRESH) -->
+    <!-- ======================================================== -->
+    <section class="relative overflow-hidden py-8 sm:py-12 border-b border-brand-cardBorder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            
+            <!-- Radiant Background Card -->
+            <div class="relative rounded-3xl p-6 sm:p-10 border-2 border-gold-400/40 overflow-hidden shadow-2xl bg-gradient-to-br from-brand-surface via-brand-card to-[#1d1633]">
                 
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-pharaoh-gold/30 text-pharaoh-goldDark text-xs font-bold mb-3 shadow-xs">
-                        <i class="fas fa-sparkles text-pharaoh-gold"></i>
-                        <span>المنصة الرسمية المباشرة لتحميل ملفات APK الموثوقة</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-4xl font-black font-messiri text-pharaoh-darkBrown leading-snug">
-                        تطبيقات سريعة، آمنة ومصممة بأعلى معايير الأداء
-                    </h2>
-                    <p class="text-sm sm:text-base text-pharaoh-darkBrown/80 font-medium mt-2 leading-relaxed">
-                        مجموعة تطبيقات أندرويد حصرية ومطورة بعناية فائقة لتوفير السرعة القصوى، حماية الخصوصية، وبدون أي إعلانات مزعجة أو استهلاك زائد للموارد.
-                    </p>
+                <!-- Ambient Glow Lights -->
+                <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-amber-500/20 blur-[80px] pointer-events-none"></div>
+                <div class="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-blue-500/20 blur-[80px] pointer-events-none"></div>
+
+                <!-- Navigation Arrows (Previous / Next App) -->
+                <div class="absolute top-5 left-5 z-20 flex items-center gap-2">
+                    <button onclick="prevHeroApp()" title="التطبيق السابق" 
+                            class="w-9 h-9 rounded-xl bg-brand-surface/90 hover:bg-gold-500 border border-brand-cardBorder hover:border-gold-400 text-white hover:text-slate-950 flex items-center justify-center text-xs font-black transition-all shadow-md">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button onclick="nextHeroApp()" title="التطبيق التالي" 
+                            class="w-9 h-9 rounded-xl bg-brand-surface/90 hover:bg-gold-500 border border-brand-cardBorder hover:border-gold-400 text-white hover:text-slate-950 flex items-center justify-center text-xs font-black transition-all shadow-md">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
                 </div>
 
-                <!-- Stats Badges -->
-                <div class="grid grid-cols-3 gap-3 w-full sm:w-auto shrink-0">
-                    <div class="bg-white/80 border border-pharaoh-sandBorder p-3 rounded-2xl text-center shadow-xs">
-                        <div class="text-xl sm:text-2xl font-black text-pharaoh-darkBrown" id="appsCountDisplay">5</div>
-                        <div class="text-[11px] font-bold text-pharaoh-goldDark mt-0.5">تطبيقات متاحة</div>
+                <div id="heroContentWrapper" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 transition-opacity duration-300">
+                    
+                    <!-- Left: Text Showcase -->
+                    <div class="lg:col-span-8 text-center sm:text-right">
+                        
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/20 border border-gold-400/60 text-gold-200 text-xs font-black mb-4 shadow-sm">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gold-400 pulse-indicator"></span>
+                            <i class="fas fa-crown text-amber-300"></i>
+                            <span id="heroBadgeText">تطبيق الواجهة الأسرع لعام 2026</span>
+                        </div>
+
+                        <h1 id="heroTitle" class="text-3xl sm:text-5xl lg:text-6xl font-black font-messiri text-white leading-tight">
+                            فيكتور لانشر <span class="text-gradient-gold">(Vector Launcher)</span>
+                        </h1>
+
+                        <p id="heroDesc" class="text-base sm:text-lg text-slate-100 font-bold mt-3 max-w-2xl leading-relaxed">
+                            أخف مشغل واجهة للأندرويد؛ يقضي نهائياً على التهنيج والبطء في كافة الأجهزة مع استهلاك شبه منعدم للبطارية، وميزة اختيار خلفية حرة من المعرض والاستديو.
+                        </p>
+
+                        <!-- Feature Badges with Vivid Colors -->
+                        <div id="heroBadgesContainer" class="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 mt-5">
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/40 text-xs font-black text-amber-300">
+                                <i class="fas fa-bolt text-amber-400"></i> فائق الخفة والسرعة
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-500/20 border border-blue-400/40 text-xs font-black text-blue-300">
+                                <i class="fas fa-image text-blue-400"></i> خلفيات من الاستديو
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-purple-500/20 border border-purple-400/40 text-xs font-black text-purple-300">
+                                <i class="fas fa-robot text-purple-400"></i> درج الذكاء الاصطناعي
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-xs font-black text-emerald-300">
+                                <i class="fas fa-ban text-emerald-400"></i> بدون أي إعلانات
+                            </span>
+                        </div>
+
+                        <!-- CTA Actions -->
+                        <div class="flex flex-col sm:flex-row items-center gap-3.5 mt-8">
+                            <a id="heroDownloadBtn" href="https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/VectorLauncher.apk"
+                               class="btn-gold-gradient text-slate-950 font-black text-base sm:text-lg py-3.5 px-8 rounded-2xl flex items-center justify-center gap-3 w-full sm:w-auto"
+                               download>
+                                <i class="fas fa-download text-xl"></i>
+                                <span id="heroDownloadText">تنزيل فيكتور لانشر (APK مباشر)</span>
+                            </a>
+
+                            <button id="heroDetailBtn" onclick="openAppDetail('vector')"
+                                    class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-brand-surface/90 hover:bg-brand-surface border-2 border-gold-400/40 hover:border-gold-400 text-white text-sm font-black transition flex items-center justify-center gap-2">
+                                <i class="fas fa-info-circle text-gold-400"></i>
+                                <span>المواصفات والتفاصيل</span>
+                            </button>
+
+                            <button id="heroQrBtn" onclick="openQrModal('فيكتور لانشر (Vector Launcher)', 'https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/VectorLauncher.apk')"
+                                    class="w-full sm:w-auto p-3.5 rounded-2xl bg-brand-surface/90 hover:bg-brand-surface border-2 border-gold-400/40 hover:border-gold-400 text-gold-300 text-base font-black transition flex items-center justify-center gap-2"
+                                    title="مسح رمز QR للتنزيل الفوري">
+                                <i class="fas fa-qrcode text-lg"></i>
+                                <span class="sm:hidden">رمز الاستجابة السريعة QR</span>
+                            </button>
+                        </div>
+
                     </div>
-                    <div class="bg-white/80 border border-pharaoh-sandBorder p-3 rounded-2xl text-center shadow-xs">
-                        <div class="text-xl sm:text-2xl font-black text-green-700">100%</div>
-                        <div class="text-[11px] font-bold text-pharaoh-goldDark mt-0.5">خالية من الفيروسات</div>
+
+                    <!-- Right: Large Spotlight 3D Icon Container -->
+                    <div class="lg:col-span-4 flex justify-center">
+                        <div id="heroIconClickable" class="relative group cursor-pointer" onclick="openAppDetail('vector')">
+                            <!-- Glow -->
+                            <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-amber-500/40 to-blue-500/40 blur-2xl group-hover:blur-3xl transition-all"></div>
+                            
+                            <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl p-5 bg-gradient-to-b from-brand-card to-brand-surface border-2 border-gold-400 shadow-card-glow flex flex-col items-center justify-center transform group-hover:scale-105 transition-all duration-300">
+                                <div class="w-40 h-40 sm:w-44 sm:h-44 rounded-2xl bg-[#13182c] p-3 border-2 border-gold-400/60 flex items-center justify-center shadow-inner overflow-hidden">
+                                    <img id="heroIconImg" src="vector_logo.png" 
+                                         alt="شعار التطبيق المعروض" 
+                                         class="w-full h-full object-contain filter drop-shadow-lg">
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <span id="heroRatingText" class="inline-flex items-center gap-1 text-sm font-black text-amber-400">
+                                        <i class="fas fa-star"></i> 5.0 (تقييم ممتاز)
+                                    </span>
+                                    <p id="heroSubText" class="text-xs font-bold text-slate-300 mt-0.5">الإصدار المستقر 2026</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-white/80 border border-pharaoh-sandBorder p-3 rounded-2xl text-center shadow-xs">
-                        <div class="text-xl sm:text-2xl font-black text-pharaoh-darkBrown">مباشر</div>
-                        <div class="text-[11px] font-bold text-pharaoh-goldDark mt-0.5">تنزيل APK سريع</div>
-                    </div>
+
+                </div>
+
+                <!-- Navigation Indicator Dots at bottom -->
+                <div class="flex items-center justify-center gap-2.5 mt-6 relative z-10" id="heroDots">
+                    <!-- Dots will be generated dynamically -->
                 </div>
 
             </div>
+
         </div>
     </section>
 
-    <div class="max-w-6xl mx-auto px-4 pt-6 pb-2 w-full">
-        <div class="flex items-center justify-between flex-wrap gap-3 pb-3 border-b border-pharaoh-sandBorder/80">
+    <!-- ======================================================== -->
+    <!-- TRUST STATS STRIP -->
+    <!-- ======================================================== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             
-            <div class="flex items-center gap-2">
-                <span class="text-xs font-extrabold text-pharaoh-darkBrown/70 flex items-center gap-1.5">
-                    <i class="fas fa-layer-group text-pharaoh-gold"></i> التصنيفات:
-                </span>
-                <div class="flex items-center gap-1.5 overflow-x-auto py-1 no-scrollbar" id="categoryContainer">
-                    <button onclick="filterCategory('all', this)" class="category-btn active px-3.5 py-1.5 rounded-xl text-xs font-black transition-all bg-pharaoh-darkBrown text-pharaoh-goldLight shadow-sm">
-                        الكل (5)
-                    </button>
-                    <button onclick="filterCategory('لانشر', this)" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white border border-pharaoh-sandBorder text-pharaoh-darkBrown hover:border-pharaoh-gold">
-                        لانشر ونظام
-                    </button>
-                    <button onclick="filterCategory('تواصل', this)" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white border border-pharaoh-sandBorder text-pharaoh-darkBrown hover:border-pharaoh-gold">
-                        تواصل
-                    </button>
-                    <button onclick="filterCategory('صوتيات', this)" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white border border-pharaoh-sandBorder text-pharaoh-darkBrown hover:border-pharaoh-gold">
-                        صوتيات وراديو
-                    </button>
-                    <button onclick="filterCategory('أمان', this)" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white border border-pharaoh-sandBorder text-pharaoh-darkBrown hover:border-pharaoh-gold">
-                        أمان وكلمات سر
-                    </button>
-                    <button onclick="filterCategory('مجتمع', this)" class="category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white border border-pharaoh-sandBorder text-pharaoh-darkBrown hover:border-pharaoh-gold">
-                        خدمات وجمعيات
-                    </button>
+            <div class="store-card rounded-2xl p-4 text-center">
+                <div class="w-10 h-10 mx-auto rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-lg mb-2">
+                    <i class="fas fa-layer-group"></i>
                 </div>
+                <div class="text-2xl sm:text-3xl font-black font-outfit text-white" id="statAppsCount">5</div>
+                <div class="text-xs font-black text-slate-300 mt-1">تطبيقات متوفرة مباشرة</div>
             </div>
 
-            <!-- Total Results Info -->
-            <div class="text-xs font-bold text-pharaoh-darkBrown/60" id="resultsCount">
-                عرض جميع التطبيقات المعتمدة
+            <div class="store-card rounded-2xl p-4 text-center">
+                <div class="w-10 h-10 mx-auto rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg mb-2">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-black font-outfit text-emerald-400">100%</div>
+                <div class="text-xs font-black text-slate-300 mt-1">خلو تام من الفيروسات</div>
+            </div>
+
+            <div class="store-card rounded-2xl p-4 text-center">
+                <div class="w-10 h-10 mx-auto rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg mb-2">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-black font-outfit text-blue-400">سريع</div>
+                <div class="text-xs font-black text-slate-300 mt-1">تحميل فوري برابط مباشر</div>
+            </div>
+
+            <div class="store-card rounded-2xl p-4 text-center">
+                <div class="w-10 h-10 mx-auto rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg mb-2">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="text-2xl sm:text-3xl font-black font-outfit text-purple-300">رسمي</div>
+                <div class="text-xs font-black text-slate-300 mt-1">برمجة م/ خالد محي الدين</div>
             </div>
 
         </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- CATEGORIES AND RESULTS HEADER -->
+    <!-- ======================================================== -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-4 w-full">
+        
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 pb-4 border-b border-brand-cardBorder">
+            
+            <!-- Category Filter Pills -->
+            <div class="w-full md:w-auto overflow-x-auto no-scrollbar py-1 flex items-center gap-2" id="categoryContainer">
+                <button onclick="filterCategory('all', this)" class="category-btn active px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all btn-gold-gradient text-slate-950 shrink-0">
+                    <i class="fas fa-th-large ml-1.5"></i> الكل (5 تطبيقات)
+                </button>
+                <button onclick="filterCategory('لانشر', this)" class="category-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white shrink-0">
+                    <i class="fas fa-rocket ml-1.5 text-amber-400"></i> لانشر ونظام
+                </button>
+                <button onclick="filterCategory('تواصل', this)" class="category-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white shrink-0">
+                    <i class="fas fa-comments ml-1.5 text-blue-400"></i> تواصل اجتماعي
+                </button>
+                <button onclick="filterCategory('صوتيات', this)" class="category-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white shrink-0">
+                    <i class="fas fa-podcast ml-1.5 text-emerald-400"></i> إذاعة وصوتيات
+                </button>
+                <button onclick="filterCategory('أمان', this)" class="category-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white shrink-0">
+                    <i class="fas fa-lock ml-1.5 text-cyan-400"></i> أمان وحماية
+                </button>
+                <button onclick="filterCategory('مجتمع', this)" class="category-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white shrink-0">
+                    <i class="fas fa-hands-helping ml-1.5 text-purple-400"></i> خدمات خيرية
+                </button>
+            </div>
+
+            <!-- View Mode & Count -->
+            <div class="w-full md:w-auto flex items-center justify-between md:justify-end gap-4 shrink-0">
+                <span class="text-xs sm:text-sm font-bold text-slate-300" id="resultsCount">
+                    عرض جميع التطبيقات المعتمدة (5)
+                </span>
+
+                <div class="flex items-center gap-1.5 bg-brand-surface p-1 rounded-xl border border-brand-cardBorder">
+                    <button onclick="setViewMode('grid')" id="gridBtn" class="w-8 h-8 rounded-lg text-xs flex items-center justify-center bg-gold-500 text-slate-950 font-black transition">
+                        <i class="fas fa-grid-2"></i>
+                    </button>
+                    <button onclick="setViewMode('list')" id="listBtn" class="w-8 h-8 rounded-lg text-xs flex items-center justify-center text-slate-400 hover:text-white transition">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
-    <main class="flex-grow max-w-6xl mx-auto px-4 py-6 w-full">
+    <!-- ======================================================== -->
+    <!-- MAIN STORE CARDS GRID - ALL ICONS UNIFIED & ENLARGED -->
+    <!-- ======================================================== -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
         
-        <div id="appsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+        <div id="appsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all">
 
-            <!-- APP 1: فيكتور لانشر (Vector Launcher) -->
-            <div class="app-card royal-card rounded-2xl p-5 relative flex flex-col justify-between"
+            <!-- ======================================================== -->
+            <!-- APP 1: VECTOR LAUNCHER -->
+            <!-- ======================================================== -->
+            <div class="app-card store-card rounded-3xl p-6 relative flex flex-col justify-between"
+                 data-id="vector"
                  data-title="فيكتور لانشر vector launcher"
-                 data-desc="أخف لانشر للأجهزة الضعيفة يمنع التقطيع وثقل الجهاز نظام وسرعة"
+                 data-desc="أخف لانشر للأجهزة الضعيفة يمنع التقطيع وثقل الجهاز نظام وسرعة خلفيات استديو"
                  data-category="لانشر">
                 
-                <!-- Ribbon & Tag -->
-                <div class="flex items-center justify-between mb-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-xs">
-                        <i class="fas fa-bolt text-[10px]"></i> أحدث إضافة 2026
-                    </span>
-                    <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md flex items-center gap-1">
-                        <i class="fas fa-feather-alt"></i> فائق الخفة
-                    </span>
-                </div>
+                <div>
+                    <!-- Top Ribbon & Rating -->
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-md">
+                            <i class="fas fa-bolt text-[10px]"></i> أحدث إصدار 2026
+                        </span>
+                        <div class="flex items-center gap-1 text-xs font-black text-amber-300 bg-amber-500/20 px-3 py-1 rounded-xl border border-amber-400/40">
+                            <i class="fas fa-star text-amber-400"></i> 5.0
+                        </div>
+                    </div>
 
-                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                    <!-- App Logo With Pharaonic Gold Frame -->
-                    <div class="relative shrink-0">
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-2 border-2 border-pharaoh-gold/50 shadow-md flex items-center justify-center overflow-hidden">
-                            <img src="https://i.ibb.co/3908Grwg/afa41ecc-415a-4a2f-92cb-20a92d63d288.png" 
-                                 alt="شعار فيكتور لانشر" 
-                                 class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                    <!-- App Identity (Large Icon + Text) -->
+                    <div class="flex items-center sm:items-start gap-4">
+                        <!-- UNIFIED LARGE ICON BOX: 110x110 -->
+                        <div class="app-icon-box shrink-0 cursor-pointer" onclick="openAppDetail('vector')">
+                            <img src="vector_logo.png" 
+                                 alt="شعار فيكتور لانشر"
                                  onerror="this.src='https://placehold.co/120x120/120d09/e4b658?text=Vector'">
                         </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl font-black text-white font-messiri hover:text-gold-300 transition-colors cursor-pointer leading-snug" onclick="openAppDetail('vector')">
+                                فيكتور لانشر (Vector Launcher)
+                            </h3>
+                            <span class="inline-block text-xs font-extrabold text-gold-300 mt-1">
+                                مشغل واجهة فائق الخفة
+                            </span>
+                            <p class="text-xs sm:text-sm text-slate-100 font-semibold mt-2 line-clamp-2 leading-relaxed">
+                                أخف لانشر للأجهزة الضعيفة؛ يقضي على التقطيع، يدعم خلفيات الاستديو الحرة وتبويب الذكاء الاصطناعي الذكي.
+                            </p>
+                        </div>
                     </div>
 
-                    <!-- App Information -->
-                    <div class="flex-1 text-center sm:text-right">
-                        <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
-                            <h3 class="text-xl font-black text-pharaoh-darkBrown font-messiri">فيكتور لانشر (Vector Launcher)</h3>
+                    <!-- Specs Strip -->
+                    <div class="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-brand-cardBorder text-center text-xs font-bold">
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الحجم</span>
+                            <span class="text-white font-black font-outfit">18.3 MB</span>
                         </div>
-                        
-                        <p class="text-xs sm:text-sm text-pharaoh-darkBrown/85 font-semibold mt-1.5 leading-relaxed">
-                            أخف مشغل واجهة للأجهزة الضعيفة؛ يقضي تماماً على التهنيج والتقطيع ويوفر سرعة فائقة مع استهلاك بطارية شبه منعدم.
-                        </p>
-
-                        <!-- App Meta Specs -->
-                        <div class="flex items-center justify-center sm:justify-start gap-3 mt-3 text-xs font-extrabold text-pharaoh-darkBrown/75">
-                            <span class="flex items-center gap-1 text-amber-600">
-                                <i class="fas fa-star text-[11px]"></i> 5.0
-                            </span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span>خالد محي الدين</span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span class="text-pharaoh-goldDark">APK مباشر</span>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الإصدار</span>
+                            <span class="text-white font-black font-outfit">V2.4</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الأمان</span>
+                            <span class="text-emerald-400 font-black flex items-center justify-center gap-1"><i class="fas fa-check-circle"></i> آمن</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Download & Quick Actions -->
-                <div class="mt-5 pt-4 border-t border-pharaoh-sandBorder/70 flex flex-col sm:flex-row items-center gap-2.5">
+                <!-- Action Buttons -->
+                <div class="mt-6 pt-4 border-t border-brand-cardBorder flex flex-col gap-2.5">
                     <a href="https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/VectorLauncher.apk"
-                       class="gold-gradient-bg text-white font-black text-sm py-2.5 px-5 rounded-xl shadow-md hover:shadow-lg transition-all w-full sm:flex-1 flex items-center justify-center gap-2 group"
+                       class="btn-gold-gradient text-slate-950 font-black text-sm py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 group/btn"
                        download>
-                        <i class="fas fa-download text-base group-hover:animate-bounce"></i>
-                        <span>تحميل فيكتور لانشر (APK)</span>
+                        <i class="fas fa-download text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
+                        <span>تنزيل فيكتور لانشر (APK)</span>
                     </a>
-                    
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="copyAppLink('https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/VectorLauncher.apk', 'فيكتور لانشر')" 
-                                title="نسخ رابط التحميل"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-link text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">نسخ الرابط</span>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="openAppDetail('vector')"
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-eye text-gold-400"></i>
+                            <span>التفاصيل الكاملة</span>
                         </button>
                         <button onclick="openQrModal('فيكتور لانشر', 'https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/VectorLauncher.apk')"
-                                title="تنزيل عبر مسح الرمز QR"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-qrcode text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">رمز QR</span>
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-qrcode text-gold-400"></i>
+                            <span>رمز QR</span>
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <!-- APP 2: تطبيق Mytab -->
-            <div class="app-card royal-card rounded-2xl p-5 relative flex flex-col justify-between"
-                 data-title="تطبيق mytab ماي تاب"
+            <!-- ======================================================== -->
+            <!-- APP 2: MYTAB V4 -->
+            <!-- ======================================================== -->
+            <div class="app-card store-card rounded-3xl p-6 relative flex flex-col justify-between"
+                 data-id="mytab"
+                 data-title="تطبيق mytab ماي تاب شات تواصل اجتماعي"
                  data-desc="تطبيق تواصل اجتماعي فريد وسريع"
                  data-category="تواصل">
                 
-                <!-- Ribbon & Tag -->
-                <div class="flex items-center justify-between mb-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-pharaoh-darkBrown text-pharaoh-goldLight border border-pharaoh-gold/40 shadow-xs">
-                        <i class="fas fa-crown text-[10px] text-pharaoh-gold"></i> التطبيق الأساسي
-                    </span>
-                    <span class="text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md flex items-center gap-1">
-                        <i class="fas fa-users"></i> منصة اجتماعية
-                    </span>
-                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-blue-600 text-white shadow-md">
+                            <i class="fas fa-crown text-[10px]"></i> المنصة الاجتماعية
+                        </span>
+                        <div class="flex items-center gap-1 text-xs font-black text-amber-300 bg-amber-500/20 px-3 py-1 rounded-xl border border-amber-400/40">
+                            <i class="fas fa-star text-amber-400"></i> 5.0
+                        </div>
+                    </div>
 
-                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                    <div class="relative shrink-0">
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-2 border-2 border-pharaoh-gold/50 shadow-md flex items-center justify-center overflow-hidden">
+                    <div class="flex items-center sm:items-start gap-4">
+                        <!-- UNIFIED LARGE ICON BOX: 110x110 -->
+                        <div class="app-icon-box shrink-0 cursor-pointer" onclick="openAppDetail('mytab')">
                             <img src="https://i.ibb.co/93y8GcxZ/Picsart-26-05-09-16-59-08-419.png" 
-                                 alt="شعار تطبيق Mytab" 
-                                 class="w-full h-full object-cover rounded-xl hover:scale-105 transition-transform duration-300"
+                                 alt="شعار تطبيق Mytab"
+                                 class="rounded-xl"
                                  onerror="this.src='https://placehold.co/120x120/120d09/e4b658?text=Mytab'">
                         </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl font-black text-white font-messiri hover:text-gold-300 transition-colors cursor-pointer leading-snug" onclick="openAppDetail('mytab')">
+                                تطبيق Mytab (ماي تاب V4)
+                            </h3>
+                            <span class="inline-block text-xs font-extrabold text-blue-400 mt-1">
+                                شبكة تواصل وتفاعل عربي
+                            </span>
+                            <p class="text-xs sm:text-sm text-slate-100 font-semibold mt-2 line-clamp-2 leading-relaxed">
+                                منصة اجتماعية حديثة تتيح النشر والتفاعل الآمن بسرعة فائقة وواجهة سلسة لا تستهلك باقة الإنترنت.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex-1 text-center sm:text-right">
-                        <h3 class="text-xl font-black text-pharaoh-darkBrown font-messiri">تطبيق Mytab (ماي تاب)</h3>
-                        <p class="text-xs sm:text-sm text-pharaoh-darkBrown/85 font-semibold mt-1.5 leading-relaxed">
-                            منصة تواصل اجتماعي عربية متطورة تتيح النشر والتفاعل بكل سهولة وخصوصية، مصممة بسرعة استجابة عالية.
-                        </p>
-
-                        <div class="flex items-center justify-center sm:justify-start gap-3 mt-3 text-xs font-extrabold text-pharaoh-darkBrown/75">
-                            <span class="flex items-center gap-1 text-amber-600">
-                                <i class="fas fa-star text-[11px]"></i> 5.0
-                            </span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span>الإصدار V4 المستقر</span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span class="text-pharaoh-goldDark">مجاني بالكامل</span>
+                    <div class="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-brand-cardBorder text-center text-xs font-bold">
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الحجم</span>
+                            <span class="text-white font-black font-outfit">12.1 MB</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الإصدار</span>
+                            <span class="text-white font-black font-outfit">V4.0</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الأمان</span>
+                            <span class="text-emerald-400 font-black flex items-center justify-center gap-1"><i class="fas fa-check-circle"></i> آمن</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-5 pt-4 border-t border-pharaoh-sandBorder/70 flex flex-col sm:flex-row items-center gap-2.5">
+                <div class="mt-6 pt-4 border-t border-brand-cardBorder flex flex-col gap-2.5">
                     <a href="https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/mytab.v4.apk"
-                       class="bg-pharaoh-darkBrown hover:bg-stone-900 text-pharaoh-goldLight border border-pharaoh-gold font-black text-sm py-2.5 px-5 rounded-xl shadow-md transition-all w-full sm:flex-1 flex items-center justify-center gap-2 group"
+                       class="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group/btn"
                        download>
-                        <i class="fas fa-download text-base group-hover:animate-bounce"></i>
+                        <i class="fas fa-download text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
                         <span>تنزيل تطبيق Mytab (APK)</span>
                     </a>
-                    
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="copyAppLink('https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/mytab.v4.apk', 'تطبيق Mytab')" 
-                                title="نسخ رابط التحميل"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-link text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">نسخ الرابط</span>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="openAppDetail('mytab')"
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-eye text-gold-400"></i>
+                            <span>التفاصيل الكاملة</span>
                         </button>
                         <button onclick="openQrModal('تطبيق Mytab', 'https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/mytab.v4.apk')"
-                                title="تنزيل عبر مسح الرمز QR"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-qrcode text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">رمز QR</span>
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-qrcode text-gold-400"></i>
+                            <span>رمز QR</span>
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <!-- APP 3: راديو خالد (Radio Khaled) -->
-            <div class="app-card royal-card rounded-2xl p-5 relative flex flex-col justify-between"
-                 data-title="راديو خالد radio khaled"
+            <!-- ======================================================== -->
+            <!-- APP 3: RADIO KHALED -->
+            <!-- ======================================================== -->
+            <div class="app-card store-card rounded-3xl p-6 relative flex flex-col justify-between"
+                 data-id="radio"
+                 data-title="راديو خالد radio khaled قرآن كريم تلاوات إذاعة"
                  data-desc="محطات إذاعية وتلاوات صوتية قرآن وبث مباشر"
                  data-category="صوتيات">
                 
-                <div class="flex items-center justify-between mb-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-[#f2e7cc] text-pharaoh-goldDark border border-pharaoh-gold/40 shadow-xs">
-                        <i class="fas fa-broadcast-tower text-[10px]"></i> بث مباشر
-                    </span>
-                    <span class="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-md flex items-center gap-1">
-                        <i class="fas fa-arrow-circle-down"></i> +10K تنزيل
-                    </span>
-                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-emerald-600 text-white shadow-md">
+                            <i class="fas fa-broadcast-tower text-[10px]"></i> بث مباشر دائم
+                        </span>
+                        <div class="flex items-center gap-1 text-xs font-black text-amber-300 bg-amber-500/20 px-3 py-1 rounded-xl border border-amber-400/40">
+                            <i class="fas fa-star text-amber-400"></i> 4.8
+                        </div>
+                    </div>
 
-                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                    <div class="relative shrink-0">
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-2 border-2 border-pharaoh-gold/50 shadow-md flex items-center justify-center overflow-hidden">
-                            <img src="https://i.ibb.co/Mxy6JZHk/unnamed.png" 
-                                 alt="شعار راديو خالد" 
-                                 class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                    <div class="flex items-center sm:items-start gap-4">
+                        <!-- UNIFIED LARGE ICON BOX: 110x110 -->
+                        <div class="app-icon-box shrink-0 cursor-pointer" onclick="openAppDetail('radio')">
+                            <img src="radio_logo.jpg" 
+                                 alt="شعار راديو خالد"
                                  onerror="this.src='https://placehold.co/120x120/120d09/e4b658?text=Radio'">
                         </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl font-black text-white font-messiri hover:text-gold-300 transition-colors cursor-pointer leading-snug" onclick="openAppDetail('radio')">
+                                راديو خالد (Radio Khaled)
+                            </h3>
+                            <span class="inline-block text-xs font-extrabold text-emerald-400 mt-1">
+                                إذاعة القرآن الكريم والمحطات
+                            </span>
+                            <p class="text-xs sm:text-sm text-slate-100 font-semibold mt-2 line-clamp-2 leading-relaxed">
+                                استمع إلى إذاعة القرآن الكريم من القاهرة ومحطات كبار القراء بصوت عالي النقاء، يعمل في الخلفية دون انقطاع.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex-1 text-center sm:text-right">
-                        <h3 class="text-xl font-black text-pharaoh-darkBrown font-messiri">راديو خالد (Radio Khaled)</h3>
-                        <p class="text-xs sm:text-sm text-pharaoh-darkBrown/85 font-semibold mt-1.5 leading-relaxed">
-                            استمع إلى إذاعة القرآن الكريم والمحطات الصوتية الإسلامية بأعلى جودة صوتية، يعمل في الخلفية دون انقطاع.
-                        </p>
-
-                        <div class="flex items-center justify-center sm:justify-start gap-3 mt-3 text-xs font-extrabold text-pharaoh-darkBrown/75">
-                            <span class="flex items-center gap-1 text-amber-600">
-                                <i class="fas fa-star text-[11px]"></i> 4.8
-                            </span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span>خالد محي الدين</span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span class="text-emerald-700">صوت عالي النقاء</span>
+                    <div class="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-brand-cardBorder text-center text-xs font-bold">
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الحجم</span>
+                            <span class="text-white font-black font-outfit">9.2 MB</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الصوت</span>
+                            <span class="text-emerald-400 font-black">نقاوة فائقة</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الأمان</span>
+                            <span class="text-emerald-400 font-black flex items-center justify-center gap-1"><i class="fas fa-check-circle"></i> آمن</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-5 pt-4 border-t border-pharaoh-sandBorder/70 flex flex-col sm:flex-row items-center gap-2.5">
+                <div class="mt-6 pt-4 border-t border-brand-cardBorder flex flex-col gap-2.5">
                     <a href="https://github.com/khmohieldin/dawnlandradio/raw/refs/heads/main/RadioKhaled.apk"
-                       class="bg-[#dfcd9f] hover:bg-[#d1be8b] text-pharaoh-darkBrown border border-pharaoh-goldDark font-black text-sm py-2.5 px-5 rounded-xl shadow-sm transition-all w-full sm:flex-1 flex items-center justify-center gap-2 group"
+                       class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group/btn"
                        download>
-                        <i class="fas fa-download text-base group-hover:animate-bounce"></i>
+                        <i class="fas fa-download text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
                         <span>تنزيل راديو خالد (APK)</span>
                     </a>
-                    
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="copyAppLink('https://github.com/khmohieldin/dawnlandradio/raw/refs/heads/main/RadioKhaled.apk', 'راديو خالد')" 
-                                title="نسخ رابط التحميل"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-link text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">نسخ الرابط</span>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="openAppDetail('radio')"
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-eye text-gold-400"></i>
+                            <span>التفاصيل الكاملة</span>
                         </button>
                         <button onclick="openQrModal('راديو خالد', 'https://github.com/khmohieldin/dawnlandradio/raw/refs/heads/main/RadioKhaled.apk')"
-                                title="تنزيل عبر مسح الرمز QR"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-qrcode text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">رمز QR</span>
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-qrcode text-gold-400"></i>
+                            <span>رمز QR</span>
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <!-- APP 4: الخزنة الذكية لكلمات السر -->
-            <div class="app-card royal-card rounded-2xl p-5 relative flex flex-col justify-between"
-                 data-title="الخزنة الذكية لكلمات السر password vault"
-                 data-desc="حفظ وحماية كلمات المرور أمان وتشفير محلي"
+            <!-- ======================================================== -->
+            <!-- APP 4: PASSWORD VAULT -->
+            <!-- ======================================================== -->
+            <div class="app-card store-card rounded-3xl p-6 relative flex flex-col justify-between"
+                 data-id="vault"
+                 data-title="الخزنة الذكية لكلمات السر password vault أمان تشفير"
+                 data-desc="حفظ وحماية كلمات المرور أمان وتشفير محلي بدون انترنت"
                  data-category="أمان">
                 
-                <div class="flex items-center justify-between mb-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-stone-900 text-emerald-400 border border-emerald-500/30 shadow-xs">
-                        <i class="fas fa-user-shield text-[10px]"></i> تشفير محلي 100%
-                    </span>
-                    <span class="text-[11px] font-bold text-purple-700 bg-purple-50 border border-purple-200 px-2 py-0.5 rounded-md flex items-center gap-1">
-                        <i class="fas fa-key"></i> أمان وحماية
-                    </span>
-                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-cyan-600 text-white shadow-md">
+                            <i class="fas fa-user-shield text-[10px]"></i> تشفير أوفلاين 100%
+                        </span>
+                        <div class="flex items-center gap-1 text-xs font-black text-amber-300 bg-amber-500/20 px-3 py-1 rounded-xl border border-amber-400/40">
+                            <i class="fas fa-star text-amber-400"></i> 4.9
+                        </div>
+                    </div>
 
-                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                    <div class="relative shrink-0">
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-2 border-2 border-pharaoh-gold/50 shadow-md flex items-center justify-center overflow-hidden">
+                    <div class="flex items-center sm:items-start gap-4">
+                        <!-- UNIFIED LARGE ICON BOX: 110x110 -->
+                        <div class="app-icon-box shrink-0 cursor-pointer" onclick="openAppDetail('vault')">
                             <img src="https://i.ibb.co/1YXWz5L2/icon.png" 
-                                 alt="شعار الخزنة الذكية" 
-                                 class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                                 alt="شعار الخزنة الذكية"
                                  onerror="this.src='https://placehold.co/120x120/120d09/e4b658?text=Vault'">
                         </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl font-black text-white font-messiri hover:text-gold-300 transition-colors cursor-pointer leading-snug" onclick="openAppDetail('vault')">
+                                الخزنة الذكية لكلمات السر
+                            </h3>
+                            <span class="inline-block text-xs font-extrabold text-cyan-400 mt-1">
+                                أمان وخصوصية البيانات
+                            </span>
+                            <p class="text-xs sm:text-sm text-slate-100 font-semibold mt-2 line-clamp-2 leading-relaxed">
+                                خزنة رقمية مشفرة لحفظ كلمات السر والحسابات الحساسة بدون اتصال بالإنترنت نهائياً لمنع أي تسريب.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex-1 text-center sm:text-right">
-                        <h3 class="text-xl font-black text-pharaoh-darkBrown font-messiri">الخزنة الذكية لكلمات السر</h3>
-                        <p class="text-xs sm:text-sm text-pharaoh-darkBrown/85 font-semibold mt-1.5 leading-relaxed">
-                            خزنة مشفرة لحفظ وإدارة جميع كلمات السر والبيانات الحساسة الخاصة بك في مكان واحد آمن دون الحاجة إلى إنترنت.
-                        </p>
-
-                        <div class="flex items-center justify-center sm:justify-start gap-3 mt-3 text-xs font-extrabold text-pharaoh-darkBrown/75">
-                            <span class="flex items-center gap-1 text-amber-600">
-                                <i class="fas fa-star text-[11px]"></i> 4.9
-                            </span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span>خالد محي الدين</span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span class="text-emerald-700">تشفير قوي</span>
+                    <div class="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-brand-cardBorder text-center text-xs font-bold">
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الحجم</span>
+                            <span class="text-white font-black font-outfit">6.4 MB</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الإنترنت</span>
+                            <span class="text-cyan-400 font-black">أوفلاين تماماً</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الأمان</span>
+                            <span class="text-emerald-400 font-black flex items-center justify-center gap-1"><i class="fas fa-check-circle"></i> آمن</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-5 pt-4 border-t border-pharaoh-sandBorder/70 flex flex-col sm:flex-row items-center gap-2.5">
+                <div class="mt-6 pt-4 border-t border-brand-cardBorder flex flex-col gap-2.5">
                     <a href="https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/pas.apk"
-                       class="bg-[#dfcd9f] hover:bg-[#d1be8b] text-pharaoh-darkBrown border border-pharaoh-goldDark font-black text-sm py-2.5 px-5 rounded-xl shadow-sm transition-all w-full sm:flex-1 flex items-center justify-center gap-2 group"
+                       class="bg-gradient-to-r from-cyan-600 via-sky-600 to-cyan-700 hover:from-cyan-500 hover:to-sky-500 text-white font-black text-sm py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group/btn"
                        download>
-                        <i class="fas fa-download text-base group-hover:animate-bounce"></i>
+                        <i class="fas fa-download text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
                         <span>تنزيل الخزنة الذكية (APK)</span>
                     </a>
-                    
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="copyAppLink('https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/pas.apk', 'الخزنة الذكية')" 
-                                title="نسخ رابط التحميل"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-link text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">نسخ الرابط</span>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="openAppDetail('vault')"
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-eye text-gold-400"></i>
+                            <span>التفاصيل الكاملة</span>
                         </button>
                         <button onclick="openQrModal('الخزنة الذكية', 'https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/pas.apk')"
-                                title="تنزيل عبر مسح الرمز QR"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-qrcode text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">رمز QR</span>
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-qrcode text-gold-400"></i>
+                            <span>رمز QR</span>
                         </button>
                     </div>
                 </div>
 
             </div>
 
-            <!-- APP 5: جمعية شبراسندى -->
-            <div class="app-card royal-card rounded-2xl p-5 relative flex flex-col justify-between md:col-span-2 lg:col-span-1"
-                 data-title="جمعية شبراسندى gam3a shopra"
+            <!-- ======================================================== -->
+            <!-- APP 5: SHOBRA CHARITY APP -->
+            <!-- ======================================================== -->
+            <div class="app-card store-card rounded-3xl p-6 relative flex flex-col justify-between md:col-span-2 lg:col-span-1"
+                 data-id="shopra"
+                 data-title="جمعية شبراسندى الخيرية خدمات اجتماعية تواصل"
                  data-desc="خدمات اجتماعية وخيرية أخبار وتواصل بلدة شبراسندى"
                  data-category="مجتمع">
                 
-                <div class="flex items-center justify-between mb-4">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-blue-50 text-blue-800 border border-blue-200 shadow-xs">
-                        <i class="fas fa-hands-helping text-[10px]"></i> خدمات مجتمعية
-                    </span>
-                    <span class="text-[11px] font-bold text-pharaoh-darkBrown bg-[#f6ebd4] border border-pharaoh-sandBorder px-2 py-0.5 rounded-md flex items-center gap-1">
-                        <i class="fas fa-check-circle text-pharaoh-gold"></i> معتمد رسمياً
-                    </span>
-                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-purple-600 text-white shadow-md">
+                            <i class="fas fa-hands-helping text-[10px]"></i> مبادرات وتكافل مجتمعي
+                        </span>
+                        <div class="flex items-center gap-1 text-xs font-black text-amber-300 bg-amber-500/20 px-3 py-1 rounded-xl border border-amber-400/40">
+                            <i class="fas fa-star text-amber-400"></i> 4.9
+                        </div>
+                    </div>
 
-                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                    <div class="relative shrink-0">
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white p-2 border-2 border-pharaoh-gold/50 shadow-md flex items-center justify-center overflow-hidden">
+                    <div class="flex items-center sm:items-start gap-4">
+                        <!-- UNIFIED LARGE ICON BOX: 110x110 -->
+                        <div class="app-icon-box shrink-0 cursor-pointer" onclick="openAppDetail('shopra')">
                             <img src="https://up6.cc/2025/06/175069752300521.png" 
-                                 alt="شعار تطبيق جمعية شبراسندى" 
-                                 class="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+                                 alt="شعار جمعية شبراسندى"
                                  onerror="this.src='https://placehold.co/120x120/120d09/e4b658?text=Shopra'">
                         </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl font-black text-white font-messiri hover:text-gold-300 transition-colors cursor-pointer leading-snug" onclick="openAppDetail('shopra')">
+                                جمعية شبراسندى الخيرية
+                            </h3>
+                            <span class="inline-block text-xs font-extrabold text-purple-400 mt-1">
+                                خدمات وتكافل مجتمعي
+                            </span>
+                            <p class="text-xs sm:text-sm text-slate-100 font-semibold mt-2 line-clamp-2 leading-relaxed">
+                                المنصة الرسمية لجمعية شبراسندى لمتابعة الأعمال الخيرية، المساعدات، والمبادرات التنموية والتواصل المباشر.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="flex-1 text-center sm:text-right">
-                        <h3 class="text-xl font-black text-pharaoh-darkBrown font-messiri">تطبيق جمعية شبراسندى الخيرية</h3>
-                        <p class="text-xs sm:text-sm text-pharaoh-darkBrown/85 font-semibold mt-1.5 leading-relaxed">
-                            التطبيق الرسمي لجمعية شبراسندى لمتابعة أحدث الخدمات الخيرية، الأخبار والمبادرات التنموية والتواصل الفعال.
-                        </p>
-
-                        <div class="flex items-center justify-center sm:justify-start gap-3 mt-3 text-xs font-extrabold text-pharaoh-darkBrown/75">
-                            <span class="flex items-center gap-1 text-amber-600">
-                                <i class="fas fa-star text-[11px]"></i> 4.9
-                            </span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span>خالد محي الدين</span>
-                            <span class="w-1 h-1 rounded-full bg-pharaoh-sandBorder"></span>
-                            <span class="text-pharaoh-goldDark">خدمات مجانية</span>
+                    <div class="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-brand-cardBorder text-center text-xs font-bold">
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الحجم</span>
+                            <span class="text-white font-black font-outfit">14.0 MB</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">النوع</span>
+                            <span class="text-purple-300 font-black">خيري مجاني</span>
+                        </div>
+                        <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                            <span class="block text-slate-400 text-[10px]">الأمان</span>
+                            <span class="text-emerald-400 font-black flex items-center justify-center gap-1"><i class="fas fa-check-circle"></i> آمن</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-5 pt-4 border-t border-pharaoh-sandBorder/70 flex flex-col sm:flex-row items-center gap-2.5">
+                <div class="mt-6 pt-4 border-t border-brand-cardBorder flex flex-col gap-2.5">
                     <a href="https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/gam3ashopra.apk"
-                       class="bg-[#dfcd9f] hover:bg-[#d1be8b] text-pharaoh-darkBrown border border-pharaoh-goldDark font-black text-sm py-2.5 px-5 rounded-xl shadow-sm transition-all w-full sm:flex-1 flex items-center justify-center gap-2 group"
+                       class="bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-700 hover:from-purple-500 hover:to-fuchsia-500 text-white font-black text-sm py-3.5 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group/btn"
                        download>
-                        <i class="fas fa-download text-base group-hover:animate-bounce"></i>
+                        <i class="fas fa-download text-base group-hover/btn:translate-y-0.5 transition-transform"></i>
                         <span>تنزيل تطبيق الجمعية (APK)</span>
                     </a>
-                    
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="copyAppLink('https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/gam3ashopra.apk', 'تطبيق جمعية شبراسندى')" 
-                                title="نسخ رابط التحميل"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-link text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">نسخ الرابط</span>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="openAppDetail('shopra')"
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-eye text-gold-400"></i>
+                            <span>التفاصيل الكاملة</span>
                         </button>
-                        <button onclick="openQrModal('تطبيق جمعية شبراسندى', 'https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/gam3ashopra.apk')"
-                                title="تنزيل عبر مسح الرمز QR"
-                                class="flex-1 sm:flex-none p-2.5 bg-white hover:bg-pharaoh-sandBg border border-pharaoh-sandBorder text-pharaoh-darkBrown rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
-                            <i class="fas fa-qrcode text-pharaoh-goldDark"></i>
-                            <span class="sm:hidden text-xs">رمز QR</span>
+                        <button onclick="openQrModal('جمعية شبراسندى', 'https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/gam3ashopra.apk')"
+                                class="py-2.5 px-3 bg-brand-surface hover:bg-brand-card border border-brand-cardBorder hover:border-gold-400 text-white rounded-xl text-xs font-black transition flex items-center justify-center gap-1.5">
+                            <i class="fas fa-qrcode text-gold-400"></i>
+                            <span>رمز QR</span>
                         </button>
                     </div>
                 </div>
@@ -620,92 +899,106 @@
 
         </div>
 
-        <!-- No Results Fallback -->
-        <div id="noResults" class="hidden text-center py-16 px-4 bg-white/70 rounded-2xl border border-pharaoh-sandBorder my-6">
-            <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-pharaoh-gold/10 flex items-center justify-center text-pharaoh-gold text-2xl">
-                <i class="fas fa-search"></i>
+        <!-- NO RESULTS FALLBACK -->
+        <div id="noResults" class="hidden text-center py-16 px-4 store-card rounded-3xl my-8">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gold-500/20 flex items-center justify-center text-gold-400 text-2xl">
+                <i class="fas fa-search-minus"></i>
             </div>
-            <h4 class="text-lg font-black text-pharaoh-darkBrown mb-1">لم يتم العثور على أي تطبيق يطابق بحثك</h4>
-            <p class="text-xs text-pharaoh-darkBrown/70 font-semibold mb-4">جرب البحث بكلمات أخرى أو اختر تصنيف "الكل"</p>
-            <button onclick="resetFilters()" class="px-4 py-2 bg-pharaoh-darkBrown text-pharaoh-goldLight text-xs font-bold rounded-xl">
-                إعادة ضبط البحث
+            <h4 class="text-xl font-black text-white font-messiri mb-2">لم نجد أي تطبيق مطابق للبحث</h4>
+            <p class="text-sm text-slate-300 font-bold mb-5">
+                تأكد من كتابة الكلمة بصورة صحيحة أو اضغط على الزر أدناه لإعادة إظهار كافة التطبيقات.
+            </p>
+            <button onclick="resetFilters()" class="px-6 py-3 btn-gold-gradient text-slate-950 text-sm font-black rounded-xl">
+                إعادة ضبط البحث والتصنيفات
             </button>
         </div>
 
     </main>
 
-    <section id="installGuide" class="max-w-6xl mx-auto px-4 py-8 w-full">
-        <div class="bg-white/90 border-2 border-pharaoh-sandBorder rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+    <!-- ======================================================== -->
+    <!-- PLAY PROTECT & TRUST INSTALLATION GUIDE -->
+    <!-- ======================================================== -->
+    <section id="installGuide" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <div class="store-card rounded-3xl p-6 sm:p-10 border-2 border-gold-400/40 relative overflow-hidden">
             
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-extrabold mb-3">
-                    <i class="fas fa-shield-alt text-amber-600"></i>
-                    <span>إرشادات أمان وتثبيت ملفات APK</span>
+            <div class="max-w-3xl mb-8">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-black mb-3">
+                    <i class="fas fa-shield-check text-sm"></i>
+                    <span>مركز الأمان والتثبيت المباشر</span>
                 </div>
-                <h3 class="text-2xl sm:text-3xl font-black font-messiri text-pharaoh-darkBrown mb-2">
-                    كيفية تثبيت التطبيقات وتخطي رسائل أندرويد التحذيرية
-                </h3>
-                <p class="text-sm text-pharaoh-darkBrown/80 font-semibold leading-relaxed mb-6">
-                    نظراً لأن هذه التطبيقات تُحمَّل مباشرة بصيغة <strong class="text-pharaoh-goldDark">APK</strong> المستقلة خارج متجر جوجل بلاي، قد تظهر بعض التنبيهات الافتراضية لحماية الهاتف. التطبيقات آمنة تماماً وخالية بنسبة 100% من أي برمجيات ضارة.
+                <h2 class="text-2xl sm:text-4xl font-black font-messiri text-white leading-snug">
+                    كيفية تثبيت ملفات APK وتخطي تنبيهات أندرويد الروتينية
+                </h2>
+                <p class="text-sm sm:text-base text-slate-200 font-bold mt-2 leading-relaxed">
+                    نظراً لأن هذه التطبيقات تُحمَّل مباشرة بصيغة <strong class="text-gold-300">APK</strong> المستقلة خارج متجر جوجل بلاي، يُطلق نظام أندرويد بعض الرسائل الاحترازية المعتادة. جميع ملفاتنا آمنة تماماً ونظيفة 100% ومفحوصة بالكامل.
                 </p>
             </div>
 
-            <!-- Steps Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Steps Interactive Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 
                 <!-- Step 1 -->
-                <div class="bg-[#faf7f0] border border-pharaoh-sandBorder rounded-2xl p-4 flex flex-col justify-between">
+                <div class="bg-brand-surface border border-brand-cardBorder rounded-2xl p-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="w-8 h-8 rounded-xl bg-pharaoh-darkBrown text-pharaoh-goldLight flex items-center justify-center font-black text-sm">
-                                1
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 flex items-center justify-center font-black font-outfit text-base shadow-sm">
+                                01
                             </span>
-                            <h4 class="font-black text-sm text-pharaoh-darkBrown">تنبيه المتصفح ("قد يكون ضاراً")</h4>
+                            <span class="text-xs font-black text-amber-300 flex items-center gap-1">
+                                <i class="fas fa-download"></i> أثناء التحميل
+                            </span>
                         </div>
-                        <p class="text-xs text-pharaoh-darkBrown/80 font-medium leading-relaxed">
-                            يظهر هذا الإشعار الروتيني مع أي ملف يتم تحميله من الإنترنت لحمايتك.
+                        <h4 class="font-black text-base text-white mb-2">تنبيه "قد يكون الملف ضاراً"</h4>
+                        <p class="text-xs sm:text-sm text-slate-200 font-semibold leading-relaxed">
+                            رسالة قياسية يظهرها متصفح كروم تلقائياً عند تنزيل أي ملف APK خارجي لحمايتك.
                         </p>
                     </div>
-                    <div class="mt-4 p-2.5 bg-white rounded-xl border border-pharaoh-sandBorder text-xs font-bold text-blue-800 flex items-center gap-2">
-                        <i class="fas fa-arrow-left text-pharaoh-gold"></i>
+                    <div class="mt-4 p-3 bg-brand-card rounded-xl border border-brand-cardBorder text-xs sm:text-sm font-black text-blue-300 flex items-center gap-2">
+                        <i class="fas fa-hand-pointer text-gold-400"></i>
                         <span>اختر: <strong>"التنزيل على أي حال"</strong></span>
                     </div>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="bg-[#faf7f0] border border-pharaoh-sandBorder rounded-2xl p-4 flex flex-col justify-between">
+                <div class="bg-brand-surface border border-brand-cardBorder rounded-2xl p-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="w-8 h-8 rounded-xl bg-pharaoh-darkBrown text-pharaoh-goldLight flex items-center justify-center font-black text-sm">
-                                2
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 text-white flex items-center justify-center font-black font-outfit text-base shadow-sm">
+                                02
                             </span>
-                            <h4 class="font-black text-sm text-pharaoh-darkBrown">مصادر غير معروفة (Unknown)</h4>
+                            <span class="text-xs font-black text-blue-300 flex items-center gap-1">
+                                <i class="fas fa-cog"></i> إذن التثبيت
+                            </span>
                         </div>
-                        <p class="text-xs text-pharaoh-darkBrown/80 font-medium leading-relaxed">
-                            قد يطلب المتصفح إذناً بالسماح لتثبيت التطبيقات الخارجية لأول مرة.
+                        <h4 class="font-black text-base text-white mb-2">مصادر غير معروفة (Unknown)</h4>
+                        <p class="text-xs sm:text-sm text-slate-200 font-semibold leading-relaxed">
+                            يطلب هاتفك الإذن بالسماح لمتصفحك بتثبيت التطبيقات الخارجية لأول مرة فقط.
                         </p>
                     </div>
-                    <div class="mt-4 p-2.5 bg-white rounded-xl border border-pharaoh-sandBorder text-xs font-bold text-emerald-800 flex items-center gap-2">
-                        <i class="fas fa-toggle-on text-emerald-600 text-sm"></i>
-                        <span>فعّل: <strong>"السماح من هذا المصدر"</strong></span>
+                    <div class="mt-4 p-3 bg-brand-card rounded-xl border border-brand-cardBorder text-xs sm:text-sm font-black text-emerald-300 flex items-center gap-2">
+                        <i class="fas fa-toggle-on text-emerald-400 text-sm"></i>
+                        <span>فعّل خيار: <strong>"السماح من هذا المصدر"</strong></span>
                     </div>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="bg-[#faf7f0] border border-pharaoh-sandBorder rounded-2xl p-4 flex flex-col justify-between">
+                <div class="bg-brand-surface border border-brand-cardBorder rounded-2xl p-5 flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center gap-3 mb-3">
-                            <span class="w-8 h-8 rounded-xl bg-pharaoh-darkBrown text-pharaoh-goldLight flex items-center justify-center font-black text-sm">
-                                3
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-red-600 text-white flex items-center justify-center font-black font-outfit text-base shadow-sm">
+                                03
                             </span>
-                            <h4 class="font-black text-sm text-pharaoh-darkBrown">تحذير Play للحماية (Protect)</h4>
+                            <span class="text-xs font-black text-rose-300 flex items-center gap-1">
+                                <i class="fas fa-shield-virus"></i> فحص الحماية
+                            </span>
                         </div>
-                        <p class="text-xs text-pharaoh-darkBrown/80 font-medium leading-relaxed">
-                            يظهر تنبيه لأن التطبيق لم يُرفع على متجر جوجل بلاي الرسمي.
+                        <h4 class="font-black text-base text-white mb-2">حماية Play Protect</h4>
+                        <p class="text-xs sm:text-sm text-slate-200 font-semibold leading-relaxed">
+                            قد يظهر إشعار فحص الحماية لأن التطبيق لم يُسجَّل في قاعدة بيانات متجر بلاي.
                         </p>
                     </div>
-                    <div class="mt-4 p-2.5 bg-red-50 border border-red-200 rounded-xl text-xs font-bold text-red-900 flex items-center gap-2">
-                        <i class="fas fa-info-circle text-red-600"></i>
+                    <div class="mt-4 p-3 bg-brand-card rounded-xl border border-brand-cardBorder text-xs sm:text-sm font-black text-rose-300 flex items-center gap-2">
+                        <i class="fas fa-check-circle text-rose-400"></i>
                         <span>اضغط <strong>"مزيد من التفاصيل"</strong> ثم <strong>"التثبيت على أي حال"</strong></span>
                     </div>
                 </div>
@@ -715,112 +1008,481 @@
         </div>
     </section>
 
-    <footer class="mt-auto bg-gradient-to-b from-[#f5ebd7] to-[#ecdec2] border-t-2 border-pharaoh-sandBorder pt-10 pb-8">
-        <div class="max-w-6xl mx-auto px-4">
+    <!-- ======================================================== -->
+    <!-- DEVELOPER FOOTER & CONTACT -->
+    <!-- ======================================================== -->
+    <footer id="developerCard" class="mt-auto border-t-2 border-brand-cardBorder bg-brand-dark/95 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center pb-8 border-b border-pharaoh-sandBorder">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pb-10 border-b border-brand-cardBorder">
                 
-                <!-- Developer Bio -->
-                <div class="text-center md:text-right">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
-                        <div class="w-10 h-10 rounded-xl bg-pharaoh-darkBrown text-pharaoh-goldLight flex items-center justify-center font-black text-base shadow-sm">
+                <!-- Col 1: Developer Info (5 cols) -->
+                <div class="md:col-span-5 text-center md:text-right">
+                    <div class="flex items-center justify-center md:justify-start gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 via-amber-500 to-indigo-600 text-slate-950 flex items-center justify-center font-black font-messiri text-2xl shadow-neon-gold">
                             خ
                         </div>
                         <div>
-                            <h4 class="font-black text-base text-pharaoh-darkBrown font-messiri">المطور خالد محي الدين</h4>
-                            <p class="text-xs font-bold text-pharaoh-goldDark">مطور تطبيقات أندرويد وحلول رقمية</p>
+                            <h4 class="font-black text-xl text-white font-messiri">المطور خالد محي الدين</h4>
+                            <p class="text-xs font-black text-gold-300">مطور تطبيقات أندرويد والحلول البرمجية الخفيفة</p>
                         </div>
                     </div>
-                    <p class="text-xs text-pharaoh-darkBrown/80 font-semibold leading-relaxed mt-2">
-                        نسعى دائماً لتقديم تطبيقات خفيفة، سريعة، ومفيدة تلبي احتياجات المستخدم العربي مع الحفاظ على أعلى معايير الخصوصية.
+                    <p class="text-xs sm:text-sm text-slate-200 font-semibold leading-relaxed mt-2 max-w-md">
+                        نحرص دائماً على تصميم وتطوير تطبيقات خفيفة، فائقة السرعة، وخالية من الإعلانات المزعجة، مع حماية خصوصية المستخدم العربي وتقديم قيمة حقيقية في كل برنامج.
                     </p>
-                </div>
 
-                <!-- Direct Channels -->
-                <div class="flex flex-col items-center">
-                    <h5 class="text-xs font-black text-pharaoh-darkBrown mb-3">قنوات الدعم والتواصل المباشر</h5>
-                    <div class="flex flex-wrap justify-center gap-2.5">
+                    <!-- Contact Channels -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mt-5">
                         <a href="https://wa.me/201018282460" target="_blank"
-                           class="flex items-center gap-2 bg-white hover:bg-emerald-50 border border-pharaoh-sandBorder text-emerald-800 px-4 py-2 rounded-xl text-xs font-extrabold transition shadow-xs">
-                            <i class="fab fa-whatsapp text-base text-emerald-600"></i> واتساب
+                           class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 text-xs font-black transition">
+                            <i class="fab fa-whatsapp text-base"></i> واتساب مباشر
                         </a>
                         <a href="tel:+201018282460"
-                           class="flex items-center gap-2 bg-white hover:bg-blue-50 border border-pharaoh-sandBorder text-blue-800 px-4 py-2 rounded-xl text-xs font-extrabold transition shadow-xs">
-                            <i class="fas fa-phone-alt text-sm text-blue-600"></i> اتصال
+                           class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/50 text-blue-300 text-xs font-black transition">
+                            <i class="fas fa-phone-alt text-xs"></i> اتصال هاتفي
                         </a>
                         <a href="https://www.facebook.com/khaledmohyalden" target="_blank"
-                           class="flex items-center gap-2 bg-white hover:bg-sky-50 border border-pharaoh-sandBorder text-sky-900 px-4 py-2 rounded-xl text-xs font-extrabold transition shadow-xs">
-                            <i class="fab fa-facebook-f text-sm text-sky-700"></i> فيسبوك
+                           class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-sky-300 text-xs font-black transition">
+                            <i class="fab fa-facebook-f text-xs"></i> فيسبوك
                         </a>
                     </div>
                 </div>
 
-                <!-- Live Visitors Counter & Security Badge -->
-                <div class="flex flex-col items-center md:items-end text-center md:text-left">
-                    <div class="bg-white/80 border border-pharaoh-sandBorder p-3 rounded-2xl shadow-xs inline-block">
-                        <span class="text-[11px] font-black text-pharaoh-darkBrown block mb-1.5 text-center">إحصائيات زيارات المتجر:</span>
-                        <img id="visitorCounter" alt="عداد الزوار" class="h-6 mx-auto rounded">
+                <!-- Col 2: Navigation (3 cols) -->
+                <div class="md:col-span-3 text-center md:text-right">
+                    <h5 class="text-xs font-black text-gold-400 uppercase tracking-wider mb-4 border-r-2 border-gold-400 pr-2">
+                        أقسام وتصنيفات المتجر
+                    </h5>
+                    <ul class="space-y-2.5 text-xs sm:text-sm font-bold text-slate-300">
+                        <li><a href="javascript:void(0)" onclick="filterCategory('لانشر', document.querySelectorAll('.category-btn')[1])" class="hover:text-gold-300 transition">مشغلات الواجهة واللانشر</a></li>
+                        <li><a href="javascript:void(0)" onclick="filterCategory('تواصل', document.querySelectorAll('.category-btn')[2])" class="hover:text-gold-300 transition">منصات وتطبيقات التواصل</a></li>
+                        <li><a href="javascript:void(0)" onclick="filterCategory('صوتيات', document.querySelectorAll('.category-btn')[3])" class="hover:text-gold-300 transition">إذاعة القرآن الكريم والتلاوات</a></li>
+                        <li><a href="javascript:void(0)" onclick="filterCategory('أمان', document.querySelectorAll('.category-btn')[4])" class="hover:text-gold-300 transition">الخزائن والتشفير المحلي</a></li>
+                        <li><a href="#installGuide" class="hover:text-gold-300 transition">إرشادات التثبيت الآمن</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Live Stats (4 cols) -->
+                <div class="md:col-span-4 flex flex-col items-center md:items-end text-center md:text-left">
+                    <div class="store-card p-4 rounded-2xl border border-gold-400/40 shadow-sm inline-block w-full sm:w-auto">
+                        <span class="text-xs font-black text-white block mb-2 text-center">
+                            إحصائيات زيارات المتجر المباشرة:
+                        </span>
+                        <div class="flex items-center justify-center p-2 rounded-xl bg-brand-surface">
+                            <img id="visitorCounter" alt="عداد الزوار" class="h-6 mx-auto rounded">
+                        </div>
                     </div>
-                    <div class="text-[11px] text-pharaoh-darkBrown/70 font-bold mt-2">
-                        &copy; <span id="year"></span> Anubis Apps. جميع الحقوق محفوظة.
+                    <div class="text-xs text-slate-300 font-bold mt-3">
+                        &copy; <span id="year"></span> Anubis Apps Store. جميع الحقوق محفوظة للمطور.
                     </div>
                 </div>
 
             </div>
 
-            <!-- Bottom Pharaonic Emblem -->
-            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-pharaoh-darkBrown/60 font-semibold">
+            <!-- Bottom Brand Info -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-300 font-bold">
                 <div class="flex items-center gap-2">
-                    <i class="fas fa-ankh text-pharaoh-gold"></i>
-                    <span>متجر أنوبيس الرسمي للتطبيقات الخفيفة والآمنة</span>
+                    <i class="fas fa-ankh text-gold-400"></i>
+                    <span>متجر أنوبيس العالمي للتطبيقات الخفيفة والآمنة</span>
                 </div>
-                <span>تمت البرمجة والتطوير بواسطة م/ خالد محي الدين</span>
+                <span>برمجة وتصميم: م/ خالد محي الدين</span>
             </div>
 
         </div>
     </footer>
 
-    <div id="qrModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden items-center justify-center p-4">
-        <div class="bg-white border-2 border-pharaoh-gold rounded-3xl p-6 max-w-sm w-full shadow-2xl relative text-center">
+    <!-- ======================================================== -->
+    <!-- APP DETAILS & SPECS MODAL -->
+    <!-- ======================================================== -->
+    <div id="appDetailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="store-card rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-8 border-2 border-gold-400/50">
             
-            <button onclick="closeQrModal()" class="absolute top-4 left-4 text-stone-400 hover:text-stone-700 text-lg">
-                <i class="fas fa-times-circle"></i>
+            <!-- Close Button -->
+            <button onclick="closeAppDetail()" class="absolute top-5 left-5 w-9 h-9 rounded-full bg-brand-surface hover:bg-gold-500 text-white hover:text-slate-950 flex items-center justify-center transition">
+                <i class="fas fa-times text-sm"></i>
             </button>
 
-            <div class="w-12 h-12 mx-auto rounded-2xl bg-[#faf7f0] border border-pharaoh-gold/40 flex items-center justify-center text-pharaoh-gold text-xl mb-3">
-                <i class="fas fa-qrcode"></i>
+            <!-- Modal Header -->
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
+                <!-- Large Uniform Icon in Modal -->
+                <div class="app-icon-box shrink-0">
+                    <img id="modalIcon" src="" alt="" class="w-full h-full object-contain">
+                </div>
+                <div class="flex-1 text-center sm:text-right">
+                    <div class="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+                        <h3 class="text-2xl sm:text-3xl font-black text-white font-messiri" id="modalTitle">اسم التطبيق</h3>
+                        <span id="modalCategory" class="px-3 py-1 rounded-full text-xs font-black bg-gold-500/20 text-gold-300 border border-gold-400/50">تصنيف</span>
+                    </div>
+                    <p id="modalTagline" class="text-xs sm:text-sm text-slate-200 font-bold mt-1.5">وصف مختصر</p>
+                    <div class="flex items-center justify-center sm:justify-start gap-4 mt-3 text-xs font-black text-slate-300">
+                        <span class="text-amber-400 flex items-center gap-1"><i class="fas fa-star"></i> <span id="modalRating">5.0</span></span>
+                        <span>•</span>
+                        <span id="modalSize" class="text-white">18 MB</span>
+                        <span>•</span>
+                        <span class="text-emerald-400 flex items-center gap-1"><i class="fas fa-shield-alt"></i> نظيف 100%</span>
+                    </div>
+                </div>
             </div>
 
-            <h4 class="text-base font-black text-pharaoh-darkBrown font-messiri" id="qrModalTitle">تنزيل التطبيق</h4>
-            <p class="text-xs text-pharaoh-darkBrown/75 font-semibold mt-1 mb-4">
-                وجه كاميرا هاتفك نحو الرمز لتحميل ملف الـ APK مباشرة:
-            </p>
-
-            <div class="bg-[#faf7f0] p-3 rounded-2xl border border-pharaoh-sandBorder inline-block mx-auto mb-4">
-                <img id="qrModalImg" src="" alt="رمز الاستجابة السريعة" class="w-44 h-44 mx-auto rounded-xl">
+            <!-- Detailed Specifications Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6 text-center text-xs font-bold">
+                <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                    <span class="block text-slate-400 text-[10px]">نظام التشغيل</span>
+                    <span class="text-white font-black font-outfit" id="modalAndroid">Android 5.0+</span>
+                </div>
+                <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                    <span class="block text-slate-400 text-[10px]">نوع الحزمة</span>
+                    <span class="text-white font-black font-outfit">APK مباشر</span>
+                </div>
+                <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                    <span class="block text-slate-400 text-[10px]">حالة الترخيص</span>
+                    <span class="text-emerald-400 font-black">مجاني بالكامل</span>
+                </div>
+                <div class="bg-brand-surface p-2.5 rounded-xl border border-brand-cardBorder">
+                    <span class="block text-slate-400 text-[10px]">المطور</span>
+                    <span class="text-white font-black">خالد محي الدين</span>
+                </div>
             </div>
 
-            <div class="flex items-center justify-center gap-2">
-                <button onclick="closeQrModal()" class="w-full py-2.5 bg-pharaoh-darkBrown text-pharaoh-goldLight text-xs font-black rounded-xl hover:bg-stone-900 transition">
-                    إغلاق النافذة
+            <!-- Feature Bullet Points -->
+            <div class="mb-6">
+                <h4 class="text-sm sm:text-base font-black text-white mb-3 flex items-center gap-2">
+                    <i class="fas fa-check-circle text-gold-400"></i> أبرز المميزات والخصائص:
+                </h4>
+                <ul id="modalFeatures" class="space-y-2.5 text-xs sm:text-sm text-slate-100 font-bold">
+                    <!-- Dynamic Features injected by JS -->
+                </ul>
+            </div>
+
+            <!-- Modal Action Footer -->
+            <div class="pt-4 border-t border-brand-cardBorder flex flex-col sm:flex-row items-center gap-3">
+                <a id="modalDownloadLink" href="#" download
+                   class="w-full sm:flex-1 py-3.5 px-6 rounded-2xl btn-gold-gradient text-slate-950 font-black text-sm flex items-center justify-center gap-2">
+                    <i class="fas fa-download"></i>
+                    <span>تحميل ملف APK الآن</span>
+                </a>
+                <button id="modalQrBtn" onclick=""
+                        class="w-full sm:w-auto px-5 py-3 rounded-2xl bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-gold-300 text-xs font-black transition flex items-center justify-center gap-2">
+                    <i class="fas fa-qrcode"></i>
+                    <span>مسح رمز QR</span>
+                </button>
+                <button id="modalCopyBtn" onclick=""
+                        class="w-full sm:w-auto px-4 py-3 rounded-2xl bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white text-xs font-black transition flex items-center justify-center gap-2">
+                    <i class="fas fa-link"></i>
+                    <span>نسخ الرابط</span>
                 </button>
             </div>
 
         </div>
     </div>
 
-    <script>
-        // Automatic Year Updater
-        document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- ======================================================== -->
+    <!-- QR SCANNER DOWNLOAD MODAL -->
+    <!-- ======================================================== -->
+    <div id="qrModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="store-card rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl relative text-center border-2 border-gold-400/60">
+            
+            <button onclick="closeQrModal()" class="absolute top-4 left-4 w-8 h-8 rounded-full bg-brand-surface text-white hover:text-gold-400 flex items-center justify-center transition">
+                <i class="fas fa-times text-sm"></i>
+            </button>
 
-        // Visitor Badge Tracker
-        const counterImg = document.getElementById('visitorCounter');
-        if (counterImg) {
-            const counterUrl = "https://api.visitorbadge.io/api/visitors?path=khaled-anubis-apps-store-v3&label=الزيارات&labelColor=%2323160e&countColor=%23c99738";
-            counterImg.src = counterUrl + "&_t=" + Date.now();
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-gold-500/20 border-2 border-gold-400/50 flex items-center justify-center text-gold-400 text-2xl mb-3">
+                <i class="fas fa-qrcode"></i>
+            </div>
+
+            <h4 class="text-xl font-black text-white font-messiri" id="qrModalTitle">تنزيل التطبيق</h4>
+            <p class="text-xs sm:text-sm text-slate-200 font-bold mt-1 mb-5">
+                وجّه كاميرا هاتفك نحو الرمز لتحميل ملف الـ APK فوراً:
+            </p>
+
+            <div class="bg-white p-4 rounded-2xl border-4 border-gold-400 inline-block mx-auto mb-5 shadow-2xl">
+                <img id="qrModalImg" src="" alt="رمز الاستجابة السريعة" class="w-48 h-48 mx-auto rounded-xl">
+            </div>
+
+            <button onclick="closeQrModal()" class="w-full py-3 bg-brand-surface hover:bg-gold-500 text-white hover:text-slate-950 text-xs font-black rounded-xl transition duration-300">
+                إغلاق
+            </button>
+
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ======================================================== -->
+    <script>
+        // Applications Database with Spotlight Configurations
+        const APPS_DATA = {
+            vector: {
+                id: 'vector',
+                title: "فيكتور لانشر (Vector Launcher)",
+                tagline: "أخف وأسرع مشغل واجهة للأجهزة الضعيفة والمتوسطة",
+                category: "لانشر ونظام",
+                icon: "vector_logo.png",
+                downloadUrl: "https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/VectorLauncher.apk",
+                size: "18.3 MB",
+                version: "2.4.0 (2026)",
+                android: "Android 7.0+",
+                rating: "5.0 ★★★★★",
+                features: [
+                    "فائق الخفة ويقضي تماماً على أي تهنيج أو ثقل حتى على الهواتف القديمة.",
+                    "دعم اختيار خلفية مخصصة للواجهة من المعرض والاستديو مباشرة مع تظليل ذكي.",
+                    "تبويب الذكاء الاصطناعي الذكي في درج التطبيقات يتعرف تلقائياً على برامج الـ AI.",
+                    "استهلاك شبه منعدم لموارد المعالج وبطارية الجهاز لتشغيل يدوم طويلاً.",
+                    "بدون أي إعلانات مزعجة نهائياً وبدون تعقب للخصوصية."
+                ],
+                spotlight: {
+                    badge: "تطبيق الواجهة الأسرع لعام 2026",
+                    titleHtml: 'فيكتور لانشر <span class="text-gradient-gold">(Vector Launcher)</span>',
+                    desc: "أخف مشغل واجهة للأندرويد؛ يقضي نهائياً على التهنيج والبطء في كافة الأجهزة مع استهلاك شبه منعدم للبطارية، وميزة اختيار خلفية حرة من المعرض والاستديو.",
+                    btnText: "تنزيل فيكتور لانشر (APK مباشر)",
+                    ratingText: "5.0 (تقييم ممتاز)",
+                    subText: "الإصدار المستقر 2026",
+                    badges: [
+                        { icon: "fas fa-bolt", text: "فائق الخفة والسرعة", cls: "bg-amber-500/20 border-amber-400/40 text-amber-300" },
+                        { icon: "fas fa-image", text: "خلفيات من الاستديو", cls: "bg-blue-500/20 border-blue-400/40 text-blue-300" },
+                        { icon: "fas fa-robot", text: "درج الذكاء الاصطناعي", cls: "bg-purple-500/20 border-purple-400/40 text-purple-300" },
+                        { icon: "fas fa-ban", text: "بدون أي إعلانات", cls: "bg-emerald-500/20 border-emerald-400/40 text-emerald-300" }
+                    ]
+                }
+            },
+            radio: {
+                id: 'radio',
+                title: "راديو خالد (Radio Khaled)",
+                tagline: "إذاعة القرآن الكريم ومحطات إسلامية بصوت عالي النقاء",
+                category: "إذاعة وصوتيات",
+                icon: "radio_logo.jpg",
+                downloadUrl: "https://github.com/khmohieldin/dawnlandradio/raw/refs/heads/main/RadioKhaled.apk",
+                size: "9.2 MB",
+                version: "V2.1.0",
+                android: "Android 5.0+",
+                rating: "4.8 ★★★★★",
+                features: [
+                    "بث مباشر متواصل لإذاعة القرآن الكريم من القاهرة على مدار 24 ساعة.",
+                    "باقة منوعة من إذاعات كبار القراء، التلاوات النادرة، وتفسير القرآن.",
+                    "يعمل بكفاءة في الخلفية ومن خلال شاشة القفل وإشعارات الهاتف.",
+                    "استهلاك منخفض جداً لباقة الإنترنت وجودة صوت فائقة النقاء."
+                ],
+                spotlight: {
+                    badge: "كوكب الإذاعة - تراث إذاعي أصيل ورحلة إلى الزمن الجميل",
+                    titleHtml: 'راديو خالد <span class="text-gradient-gold">(كوكب الإذاعة)</span>',
+                    desc: "استمع إلى بث حي ومتواصل لإذاعة القرآن الكريم من القاهرة وباقة من كبار القراء والتسجيلات الإذاعية النادرة بصوت نقي يعمل في الخلفية وشاشة القفل.",
+                    btnText: "تنزيل راديو خالد (APK مباشر)",
+                    ratingText: "4.8 (تقييم ممتاز)",
+                    subText: "بث مباشر عالي النقاء",
+                    badges: [
+                        { icon: "fas fa-broadcast-tower", text: "بث مباشر متواصل", cls: "bg-emerald-500/20 border-emerald-400/40 text-emerald-300" },
+                        { icon: "fas fa-volume-up", text: "صوت نقي عالي الجودة", cls: "bg-amber-500/20 border-amber-400/40 text-amber-300" },
+                        { icon: "fas fa-moon", text: "يعمل في الخلفية والقفل", cls: "bg-blue-500/20 border-blue-400/40 text-blue-300" },
+                        { icon: "fas fa-feather-alt", text: "خفيف ومنخفض الاستهلاك", cls: "bg-purple-500/20 border-purple-400/40 text-purple-300" }
+                    ]
+                }
+            },
+            mytab: {
+                id: 'mytab',
+                title: "تطبيق Mytab (ماي تاب V4)",
+                tagline: "منصة تواصل اجتماعي عربية متطورة وخفيفة",
+                category: "تواصل اجتماعي",
+                icon: "https://i.ibb.co/93y8GcxZ/Picsart-26-05-09-16-59-08-419.png",
+                downloadUrl: "https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/mytab.v4.apk",
+                size: "12.1 MB",
+                version: "V4.0 المستقر",
+                android: "Android 5.0+",
+                rating: "5.0 ★★★★★",
+                features: [
+                    "تواصل سريع ومشاركة منشورات وصور وفيديوهات دون استهلاك كبير للإنترنت.",
+                    "واجهة عصرية وبسيطة تمنحك تجربة استخدام ممتعة ومريحة للعين.",
+                    "حماية كاملة للخصوصية والبيانات مع تشفير أمني للمحادثات.",
+                    "يعمل بكفاءة على شبكات 3G والاتصالات الضعيفة."
+                ],
+                spotlight: {
+                    badge: "منصة التواصل والتفاعل الاجتماعي المحدثة V4",
+                    titleHtml: 'تطبيق ماي تاب <span class="text-gradient-cyan">(Mytab V4)</span>',
+                    desc: "شبكة تواصل اجتماعي عربية سريعة وآمنة؛ تتيح لك مشاركة المنشورات والتفاعل مع الأصدقاء بأقصى سرعة وأقل استهلاك لذاكرة الهاتف وباقة الإنترنت.",
+                    btnText: "تنزيل تطبيق Mytab (APK مباشر)",
+                    ratingText: "5.0 (تقييم ممتاز)",
+                    subText: "الإصدار V4 المستقر",
+                    badges: [
+                        { icon: "fas fa-users", text: "مجتمع تفاعلي نشط", cls: "bg-blue-500/20 border-blue-400/40 text-blue-300" },
+                        { icon: "fas fa-tachometer-alt", text: "سرعة استجابة فائقة", cls: "bg-amber-500/20 border-amber-400/40 text-amber-300" },
+                        { icon: "fas fa-shield-alt", text: "حماية الخصوصية", cls: "bg-emerald-500/20 border-emerald-400/40 text-emerald-300" },
+                        { icon: "fas fa-mobile-alt", text: "يعمل على كافة الشبكات", cls: "bg-purple-500/20 border-purple-400/40 text-purple-300" }
+                    ]
+                }
+            },
+            vault: {
+                id: 'vault',
+                title: "الخزنة الذكية لكلمات السر",
+                tagline: "حفظ وتشفير كلمات المرور والبيانات الحساسة بدون إنترنت",
+                category: "أمان وخزائن",
+                icon: "https://i.ibb.co/1YXWz5L2/icon.png",
+                downloadUrl: "https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/pas.apk",
+                size: "6.4 MB",
+                version: "V1.5.0",
+                android: "Android 6.0+",
+                rating: "4.9 ★★★★★",
+                features: [
+                    "تشفير محلي عسكري متين يتم حصرياً على جهازك دون إرسال أي معلومة لسيرفر خارجي.",
+                    "يعمل أوفلاين بنسبة 100% دون الحاجة إلى اتصال بالإنترنت نهائياً.",
+                    "إمكانية تصنيف الحسابات، البطاقات، والملاحظات السرية وسهولة البحث فيها.",
+                    "حماية بقفل رئيسي وبصمة الإصبع لضمان عدم وصول أي شخص لبياناتك."
+                ],
+                spotlight: {
+                    badge: "الأمان الرقمي العالي - حماية الحسابات والكلمات السرية",
+                    titleHtml: 'الخزنة الذكية <span class="text-gradient-cyan">(Password Vault)</span>',
+                    desc: "خزنة مشفرة محلياً بتشفير عسكري لحفظ كافة كلمات السر والبيانات الحساسة والحسابات البنكية بأمان تام 100% بدون أي اتصال بالإنترنت.",
+                    btnText: "تنزيل الخزنة الذكية (APK مباشر)",
+                    ratingText: "4.9 (تقييم ممتاز)",
+                    subText: "تشفير محلي عالي الأمان",
+                    badges: [
+                        { icon: "fas fa-user-shield", text: "تشفير عسكري محلي", cls: "bg-cyan-500/20 border-cyan-400/40 text-cyan-300" },
+                        { icon: "fas fa-wifi-slash", text: "أوفلاين بدون إنترنت", cls: "bg-emerald-500/20 border-emerald-400/40 text-emerald-300" },
+                        { icon: "fas fa-fingerprint", text: "دعم بصمة الإصبع", cls: "bg-purple-500/20 border-purple-400/40 text-purple-300" },
+                        { icon: "fas fa-key", text: "حماية الخصوصية التامة", cls: "bg-amber-500/20 border-amber-400/40 text-amber-300" }
+                    ]
+                }
+            },
+            shopra: {
+                id: 'shopra',
+                title: "جمعية شبراسندى الخيرية",
+                tagline: "المنصة الرسمية للخدمات المجتمعية والتواصل الخيري",
+                category: "خدمات ومجتمع",
+                icon: "https://up6.cc/2025/06/175069752300521.png",
+                downloadUrl: "https://github.com/khmohieldin/my-apk-app/raw/refs/heads/main/gam3ashopra.apk",
+                size: "14.0 MB",
+                version: "V1.2.0",
+                android: "Android 5.0+",
+                rating: "4.9 ★★★★★",
+                features: [
+                    "متابعة المشروعات الخيرية والتنموية الجارية في بلدة شبراسندى.",
+                    "إمكانية التواصل المباشر مع إدارة الجمعية لتقديم المقترحات والمساعدات.",
+                    "إشعارات فورية بكل المبادرات والأنشطة الاجتماعية لحظة بلحظة.",
+                    "تطبيق رسمي معتمد وتطوعي لخدمة أهالي القرية والمجتمع."
+                ],
+                spotlight: {
+                    badge: "المنصة الرسمية للتكافل والعمل الخيري المجتمعي",
+                    titleHtml: 'جمعية شبراسندى <span class="text-gradient-gold">(الخيرية)</span>',
+                    desc: "التطبيق الرسمي المعتمد لمتابعة المشروعات التنموية والمساعدات الإنسانية والمبادرات الخيرية لبلدة شبراسندى والتواصل المباشر مع إدارة الجمعية.",
+                    btnText: "تنزيل تطبيق الجمعية (APK مباشر)",
+                    ratingText: "4.9 (تقييم ممتاز)",
+                    subText: "خدمات خيرية مجانية",
+                    badges: [
+                        { icon: "fas fa-hands-helping", text: "مبادرات تكافل مجتمعي", cls: "bg-purple-500/20 border-purple-400/40 text-purple-300" },
+                        { icon: "fas fa-bell", text: "إشعارات المشروعات الخيرية", cls: "bg-blue-500/20 border-blue-400/40 text-blue-300" },
+                        { icon: "fas fa-check-circle", text: "معتمد وتطوعي 100%", cls: "bg-emerald-500/20 border-emerald-400/40 text-emerald-300" },
+                        { icon: "fas fa-comments", text: "تواصل مباشر مع الإدارة", cls: "bg-amber-500/20 border-amber-400/40 text-amber-300" }
+                    ]
+                }
+            }
+        };
+
+        // ==========================================
+        // DYNAMIC HERO SPOTLIGHT ROTATION CONTROLLER
+        // ==========================================
+        const HERO_APP_KEYS = ['vector', 'radio', 'mytab', 'vault', 'shopra'];
+        let currentHeroIndex = 0;
+
+        function initHeroSpotlight() {
+            // Read previous index from localStorage and switch to the next one on each reload!
+            const storedIndex = localStorage.getItem('anubis_hero_index');
+            if (storedIndex !== null) {
+                currentHeroIndex = (parseInt(storedIndex, 10) + 1) % HERO_APP_KEYS.length;
+            } else {
+                currentHeroIndex = Math.floor(Math.random() * HERO_APP_KEYS.length);
+            }
+            localStorage.setItem('anubis_hero_index', currentHeroIndex);
+
+            buildHeroDots();
+            renderHeroApp(currentHeroIndex, false);
         }
 
-        // Live Search & Category Filter Logic
+        function buildHeroDots() {
+            const dotsContainer = document.getElementById('heroDots');
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            HERO_APP_KEYS.forEach((key, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `h-3 rounded-full transition-all duration-300 ${idx === currentHeroIndex ? 'w-8 bg-gold-400 shadow-neon-gold' : 'w-3 bg-brand-cardBorder hover:bg-gold-500/50'}`;
+                dot.title = APPS_DATA[key].title;
+                dot.onclick = () => renderHeroApp(idx, true);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function renderHeroApp(index, animate = true) {
+            currentHeroIndex = (index + HERO_APP_KEYS.length) % HERO_APP_KEYS.length;
+            localStorage.setItem('anubis_hero_index', currentHeroIndex);
+
+            const appKey = HERO_APP_KEYS[currentHeroIndex];
+            const app = APPS_DATA[appKey];
+            if (!app || !app.spotlight) return;
+
+            const wrapper = document.getElementById('heroContentWrapper');
+            
+            const updateDom = () => {
+                document.getElementById('heroBadgeText').textContent = app.spotlight.badge;
+                document.getElementById('heroTitle').innerHTML = app.spotlight.titleHtml;
+                document.getElementById('heroDesc').textContent = app.spotlight.desc;
+                document.getElementById('heroDownloadText').textContent = app.spotlight.btnText;
+                document.getElementById('heroDownloadBtn').href = app.downloadUrl;
+                document.getElementById('heroRatingText').innerHTML = `<i class="fas fa-star text-amber-400"></i> ${app.spotlight.ratingText}`;
+                document.getElementById('heroSubText').textContent = app.spotlight.subText;
+
+                const iconImg = document.getElementById('heroIconImg');
+                iconImg.src = app.icon;
+                iconImg.alt = app.title;
+
+                document.getElementById('heroIconClickable').onclick = () => openAppDetail(appKey);
+                document.getElementById('heroDetailBtn').onclick = () => openAppDetail(appKey);
+                document.getElementById('heroQrBtn').onclick = () => openQrModal(app.title, app.downloadUrl);
+
+                const badgesBox = document.getElementById('heroBadgesContainer');
+                badgesBox.innerHTML = '';
+                app.spotlight.badges.forEach(b => {
+                    const badge = document.createElement('span');
+                    badge.className = `inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border text-xs font-black ${b.cls}`;
+                    badge.innerHTML = `<i class="${b.icon}"></i> ${b.text}`;
+                    badgesBox.appendChild(badge);
+                });
+
+                const dots = document.querySelectorAll('#heroDots button');
+                dots.forEach((dot, idx) => {
+                    if (idx === currentHeroIndex) {
+                        dot.className = 'w-8 h-3 rounded-full bg-gold-400 shadow-neon-gold transition-all duration-300';
+                    } else {
+                        dot.className = 'w-3 h-3 rounded-full bg-brand-cardBorder hover:bg-gold-500/50 transition-all duration-300';
+                    }
+                });
+            };
+
+            if (animate && wrapper) {
+                wrapper.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    updateDom();
+                    wrapper.classList.remove('opacity-0', 'scale-95');
+                }, 180);
+            } else {
+                updateDom();
+            }
+        }
+
+        function nextHeroApp() {
+            renderHeroApp(currentHeroIndex + 1, true);
+        }
+
+        function prevHeroApp() {
+            renderHeroApp(currentHeroIndex - 1, true);
+        }
+
+        // Year update
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Visitor counter
+        const counterImg = document.getElementById('visitorCounter');
+        if (counterImg) {
+            counterImg.src = "https://api.visitorbadge.io/api/visitors?path=khaled-anubis-apps-store-v5&label=الزيارات&labelColor=%23151a30&countColor=%23F59E0B&_t=" + Date.now();
+        }
+
+        // Live Search & Category Filtering
         let currentCategory = 'all';
         let currentSearchQuery = '';
 
@@ -854,11 +1516,12 @@
         function filterCategory(cat, btnElement) {
             currentCategory = cat;
 
-            // Update category button styles
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.className = 'category-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white border border-pharaoh-sandBorder text-pharaoh-darkBrown hover:border-pharaoh-gold';
+                btn.className = 'category-btn px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all bg-brand-surface border border-brand-cardBorder hover:border-gold-400 text-white shrink-0';
             });
-            btnElement.className = 'category-btn active px-3.5 py-1.5 rounded-xl text-xs font-black transition-all bg-pharaoh-darkBrown text-pharaoh-goldLight shadow-sm';
+            if (btnElement) {
+                btnElement.className = 'category-btn active px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all btn-gold-gradient text-slate-950 shrink-0';
+            }
 
             applyFilters();
         }
@@ -886,7 +1549,6 @@
                 }
             });
 
-            // Handle results count and no-results block
             const noResults = document.getElementById('noResults');
             const resultsCountText = document.getElementById('resultsCount');
 
@@ -895,7 +1557,7 @@
                 resultsCountText.textContent = 'لم يتم العثور على نتائج';
             } else {
                 noResults.classList.add('hidden');
-                resultsCountText.textContent = `تم العثور على (${visibleCount}) تطبيق`;
+                resultsCountText.textContent = `عرض (${visibleCount}) من أصل 5 تطبيقات معتمدة`;
             }
         }
 
@@ -907,65 +1569,155 @@
             }
         }
 
-        // Copy App Link to Clipboard using fallback for iframe safety
-        function copyAppLink(url, appName) {
-            const tempInput = document.createElement('input');
-            tempInput.value = url;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            try {
-                document.execCommand('copy');
-                showToast(`تم نسخ رابط تحميل ${appName} بنجاح!`);
-            } catch (err) {
-                showToast('تعذر النسخ تلقائياً، يمكنك الضغط مطولاً على زر التحميل.');
+        // View Mode Switcher
+        function setViewMode(mode) {
+            const grid = document.getElementById('appsGrid');
+            const gridBtn = document.getElementById('gridBtn');
+            const listBtn = document.getElementById('listBtn');
+
+            if (mode === 'list') {
+                grid.className = 'grid grid-cols-1 gap-5 transition-all';
+                listBtn.className = 'w-8 h-8 rounded-lg text-xs flex items-center justify-center bg-gold-500 text-slate-950 font-black transition';
+                gridBtn.className = 'w-8 h-8 rounded-lg text-xs flex items-center justify-center text-slate-400 hover:text-white transition';
+            } else {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all';
+                gridBtn.className = 'w-8 h-8 rounded-lg text-xs flex items-center justify-center bg-gold-500 text-slate-950 font-black transition';
+                listBtn.className = 'w-8 h-8 rounded-lg text-xs flex items-center justify-center text-slate-400 hover:text-white transition';
             }
-            document.body.removeChild(tempInput);
         }
 
-        // Toast Notification System
-        let toastTimeout;
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            toastMessage.textContent = message;
+        // App Details Modal
+        function openAppDetail(appId) {
+            const data = APPS_DATA[appId];
+            if (!data) return;
 
-            clearTimeout(toastTimeout);
-            toast.classList.remove('-translate-y-20', 'opacity-0', 'pointer-events-none');
-            toast.classList.add('translate-y-0', 'opacity-100');
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalTagline').textContent = data.tagline;
+            document.getElementById('modalCategory').textContent = data.category;
+            document.getElementById('modalIcon').src = data.icon;
+            document.getElementById('modalRating').textContent = data.rating;
+            document.getElementById('modalSize').textContent = data.size;
+            document.getElementById('modalAndroid').textContent = data.android;
+            document.getElementById('modalDownloadLink').href = data.downloadUrl;
 
-            toastTimeout = setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('-translate-y-20', 'opacity-0', 'pointer-events-none');
-            }, 3000);
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = '';
+            data.features.forEach(feat => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-2.5';
+                li.innerHTML = `<i class="fas fa-check-circle text-gold-400 text-sm"></i> <span>${feat}</span>`;
+                featuresList.appendChild(li);
+            });
+
+            document.getElementById('modalQrBtn').onclick = () => openQrModal(data.title, data.downloadUrl);
+            document.getElementById('modalCopyBtn').onclick = () => copyAppLink(data.downloadUrl, data.title);
+
+            const modal = document.getElementById('appDetailModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
-        // QR Code Modal for Phone Scanner Download
+        function closeAppDetail() {
+            const modal = document.getElementById('appDetailModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // QR Code Modal
         function openQrModal(appName, downloadUrl) {
             const modal = document.getElementById('qrModal');
             const title = document.getElementById('qrModalTitle');
             const img = document.getElementById('qrModalImg');
 
-            title.textContent = `تحميل: ${appName}`;
-            // High-speed reliable QR Code generator API
-            img.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(downloadUrl)}`;
+            title.textContent = `تنزيل: ${appName}`;
+            img.src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(downloadUrl)}`;
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeQrModal() {
             const modal = document.getElementById('qrModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking on backdrop
+        // Link copy
+        function copyAppLink(url, appName) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showToast(`تم نسخ رابط تحميل ${appName} بنجاح!`);
+                }).catch(() => {
+                    fallbackCopy(url, appName);
+                });
+            } else {
+                fallbackCopy(url, appName);
+            }
+        }
+
+        function fallbackCopy(url, appName) {
+            const temp = document.createElement('input');
+            temp.value = url;
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+                showToast(`تم نسخ رابط تحميل ${appName} بنجاح!`);
+            } catch (e) {
+                showToast('اضغط مطولاً على زر التحميل لنسخ الرابط.');
+            }
+            document.body.removeChild(temp);
+        }
+
+        // Toast
+        let toastTimeout;
+        function showToast(message, title = "إشعار المتجر") {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+
+            clearTimeout(toastTimeout);
+            toast.classList.remove('-translate-y-28', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-28', 'opacity-0', 'pointer-events-none');
+            }, 3200);
+        }
+
+        // Window Event Listeners
         window.addEventListener('click', function(e) {
-            const modal = document.getElementById('qrModal');
-            if (e.target === modal) {
+            const qrModal = document.getElementById('qrModal');
+            const detailModal = document.getElementById('appDetailModal');
+            if (e.target === qrModal) closeQrModal();
+            if (e.target === detailModal) closeAppDetail();
+        });
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
                 closeQrModal();
+                closeAppDetail();
+            }
+            if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement.tagName !== 'INPUT')) {
+                e.preventDefault();
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             }
         });
+
+        // Initialize Dynamic Hero Spotlight rotation on page load
+        document.addEventListener('DOMContentLoaded', initHeroSpotlight);
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            initHeroSpotlight();
+        }
     </script>
 </body>
 </html>
